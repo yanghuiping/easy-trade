@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<decorators defaultdir="/WEB-INF/view/mainstyle">
+    <excludes>
+    	<pattern>*My97DatePicker.htm</pattern>
+        <pattern>/**/js/*</pattern>
+        <pattern>/**/css/*</pattern>
+        <pattern>/login.jsp</pattern>
+        <pattern>/index.jsp</pattern>       
+        <pattern>/j_spring_security_logout*</pattern>
+        <pattern>*/tabs/**/*.do*</pattern>
+        <pattern>*/ajax/**/*.do*</pattern>
+        <pattern>*/dialog/*.do*</pattern>
+        <pattern>*List.do*</pattern>
+        <pattern>*/ajax/*.do*</pattern>
+        <pattern>*/frame/*.do*</pattern>
+    </excludes>
+    <decorator name="main" page="main.jsp">
+       <pattern>*.do*</pattern>
+    </decorator>
+</decorators>
