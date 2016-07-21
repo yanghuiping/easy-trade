@@ -14,7 +14,7 @@ public class PageTag extends TagSupport {
 
 	private static final long serialVersionUID = -5784043607741818040L;
 
-	private static String DEFAULT_PAGE_NO_NAME = "page_no_demo";
+	private static String DEFAULT_PAGE_NO_NAME = "pageNo";
 
 	private String formId;
 
@@ -50,9 +50,8 @@ public class PageTag extends TagSupport {
 	private String buildPage() {
 		//pages
 		StringBuffer pageBuffer = new StringBuffer();
-		pageBuffer.append("请选择");
-//		pageBuffer.append("<select class=\"input\" name=\"page.pageSize\"").append(totalPageCount == 0 ? " disabled=\"disabled\" " : "").append(" onchange=\"go(this.value);\" >").append("\n");
-		pageBuffer.append("<select class=\"input\" name=\"pageSize\"").append(totalPageCount == 0 ? " disabled=\"disabled\" " : "").append(" onchange=\"go(this.value);\" >").append("\n");
+		pageBuffer.append("每页记录数");
+		pageBuffer.append("<select class=\"input\" name=\"page.pageSize\"").append(totalPageCount == 0 ? " disabled=\"disabled\" " : "").append(" onchange=\"go(this.value);\" >").append("\n");
 		pageBuffer.append("<option value=\"5\"").append(isSelected(5)).append(">5</option>").append("\n");
 		pageBuffer.append("<option value=\"10\"").append(isSelected(10)).append(">10</option>").append("\n");
 		pageBuffer.append("<option value=\"20\"").append(isSelected(20)).append(">20</option>").append("\n");
@@ -68,38 +67,38 @@ public class PageTag extends TagSupport {
 		pageBuffer.append("<option value=\"500\"").append(isSelected(500)).append(">500</option>").append("\n");
 		pageBuffer.append("<option value=\"1000\"").append(isSelected(1000)).append(">1000</option>").append("\n");
 		pageBuffer.append("</select>").append("\n");
-		pageBuffer.append("��").append("<span class=\"red\">").append("&nbsp;" + totalCount + "&nbsp;").append("</span>����¼&nbsp;").append("\n");;
-		pageBuffer.append("��ǰ��").append("&nbsp;" + currentPageNo + "/" + totalPageCount + "&nbsp;").append("ҳ").append("\n");;
+		pageBuffer.append("共").append("<span class=\"red\">").append("&nbsp;" + totalCount + "&nbsp;").append("</span>条记录&nbsp;").append("\n");;
+		pageBuffer.append("当前第").append("&nbsp;" + currentPageNo + "/" + totalPageCount + "&nbsp;").append("页").append("\n");;
 		
 		pageBuffer.append("<span class=\"an7\">").append("\n");;
 		if(currentPageNo > 1){
-			pageBuffer.append("<a href=\"#\" onclick=\"firstPage();\">��ҳ</a>").append("\n");;
+			pageBuffer.append("<a href=\"#\" onclick=\"firstPage();\">首页</a>").append("\n");;
 		}else{
-			pageBuffer.append("<span>��ҳ</span>").append("\n");;
+			pageBuffer.append("<span>首页</span>").append("\n");;
 		}
 		if(currentPageNo > 1){
-			pageBuffer.append("<a href=\"#\" onclick=\"previousPage();\">��һҳ</a>").append("\n");
+			pageBuffer.append("<a href=\"#\" onclick=\"previousPage();\">上一页</a>").append("\n");
 		}else{
-			pageBuffer.append("<span>��һҳ</span>").append("\n");
+			pageBuffer.append("<span>上一页</span>").append("\n");
 		}
 		if(currentPageNo < totalPageCount){
-			pageBuffer.append("<a href=\"#\" onclick=\"nextPage();\">��һҳ</a>").append("\n");
+			pageBuffer.append("<a href=\"#\" onclick=\"nextPage();\">下一页</a>").append("\n");
 		}else{
-			pageBuffer.append("<span>��һҳ</span>").append("\n");
+			pageBuffer.append("<span>下一页</span>").append("\n");
 		}
 		if(currentPageNo < totalPageCount){
-			pageBuffer.append("<a href=\"#\" onclick=\"lastPage();\">βҳ</a>").append("\n");
+			pageBuffer.append("<a href=\"#\" onclick=\"lastPage();\">尾页</a>").append("\n");
 		}else{
-			pageBuffer.append("<span>βҳ</span>").append("\n");
+			pageBuffer.append("<span>尾页</span>").append("\n");
 		}
 		pageBuffer.append("&nbsp;&nbsp;");
 		pageBuffer.append("<span>").append("\n");
 		pageBuffer.append("<input type=\"hidden\" name=\"pageNo\" value=\"").append(currentPageNo).append("\"/>").append("\n");
 		pageBuffer.append("<input type=\"text\" class=\"input\" ").append(totalPageCount == 0 ? " disabled=\"disabled\" " : "").append(" name=\"jumpPageNo\" id=\"jumpPageNo\" size=\"4\"/>").append("\n");
 		if(totalPageCount == 0) {
-			pageBuffer.append("<font color=\"gray\">ת��&nbsp;</font>");
+			pageBuffer.append("<font color=\"gray\">转到&nbsp;</font>");
 		} else {
-			pageBuffer.append("<a href=\"#\"").append(" onclick=\"jump();\" >").append("ת��").append("</a>").append("\n");
+			pageBuffer.append("<a href=\"#\"").append(" onclick=\"jump();\" >").append("转到").append("</a>").append("\n");
 		}
 		pageBuffer.append("</span>").append("\n");
 		return pageBuffer.toString();
@@ -120,12 +119,12 @@ public class PageTag extends TagSupport {
 		scriptBuffer.append("var form = document.getElementById('").append(formId).append("');").append("\n");
 		scriptBuffer.append("var jumpPageNo = form.jumpPageNo.value;").append("\n");
 		scriptBuffer.append("if(jumpPageNo == \"\"){").append("\n");
-		scriptBuffer.append("alert(\"������Ҫ��ת��ҳ��!\");return;}").append("\n");
+		scriptBuffer.append("alert(\"请输入要跳转的页码!\");return;}").append("\n");
 		scriptBuffer.append("if(!checkIsInteger(jumpPageNo)){").append("\n");
-		scriptBuffer.append("alert(\"ҳ�����������!\");return;}").append("\n");
-		scriptBuffer.append("if(jumpPageNo < 1){alert(\"ҳ�벻��С��1\");return;}").append("\n");
+		scriptBuffer.append("alert(\"页码必须是数字!\");return;}").append("\n");
+		scriptBuffer.append("if(jumpPageNo < 1){alert(\"页码不能小于1\");return;}").append("\n");
 		scriptBuffer.append("if(jumpPageNo > ").append(totalPageCount).append("){").append("\n");
-		scriptBuffer.append("alert(\"�����ҳ�泬�����ҳ�淶Χ!\");return;}").append("\n");
+		scriptBuffer.append("alert(\"输入的页面超出最大页面范围!\");return;}").append("\n");
 		scriptBuffer.append("form.pageNo.value = jumpPageNo; form.submit();}").append("\n");
 		scriptBuffer.append("function firstPage(){").append("\n");
 		scriptBuffer.append("var form = document.getElementById('").append(formId).append("');").append("\n");
@@ -152,7 +151,7 @@ public class PageTag extends TagSupport {
 		
 		scriptBuffer.append("function go(pageSize){").append("\n");
 		scriptBuffer.append("var form = document.getElementById('").append(formId).append("');").append("\n");
-		scriptBuffer.append("setCookie('page_no_demo_pageSize', pageSize, 200);").append("\n");
+		scriptBuffer.append("setCookie('icp_report_pageSize', pageSize, 200);").append("\n");
 		scriptBuffer.append("form.pageNo.value = 1;").append("\n");
 		scriptBuffer.append("form.submit();}").append("\n");
 		scriptBuffer.append("</script>").append("\n");
@@ -163,6 +162,20 @@ public class PageTag extends TagSupport {
 		StringBuffer styleBuffer = new StringBuffer();
 		styleBuffer.append("<style type=\"text/css\">").append("\n");
 		styleBuffer.append("<!--").append("\n");
+//		styleBuffer.append("a:link {color: #003558;text-decoration: none;}").append("\n");
+//		styleBuffer.append("a:visited {text-decoration: none;color: #003558;}").append("\n");
+//		styleBuffer.append("a:hover {text-decoration: underline;color: #FF0000;}").append("\n");
+//		styleBuffer.append("a:active {text-decoration: none;color: #FF0000;}").append("\n");
+//		styleBuffer.append(".noavtived{color: gray;}").append("\n");
+//
+//		styleBuffer.append(".pages{").append("\n");
+//		styleBuffer.append("width:100%;").append("\n");
+//		styleBuffer.append("background-color: White;").append("\n");
+//		styleBuffer.append("color:#014F8A;").append("\n");
+//		styleBuffer.append("border-color:White;border-width:1px;border-style:solid;border-collapse:collapse;").append(
+//				"\n");
+//
+//		styleBuffer.append("}").append("\n");
 		styleBuffer.append("-->").append("\n");
 		styleBuffer.append("</style>").append("\n");
 		return styleBuffer.toString();
