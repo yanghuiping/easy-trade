@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="purchasecontract">
+	<typeAlias alias="purchaseContract" type="com.xcm.open.core.model.PurchaseContract"/>
+    <resultMap id="purchaseContract" class="com.xcm.open.core.model.PurchaseContract">
+        <result column="BUY_CONTACTS_TEL" property="buyContactsTel" jdbcType="VARCHAR"/>
+        <result column="EFFECTIVE_TIME" property="effectiveTime" jdbcType="TIMESTAMP"/>
+        <result column="SELL_CONTACTS_TEL" property="sellContactsTel" jdbcType="VARCHAR"/>
+        <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="REMARK" property="remark" jdbcType="VARCHAR"/>
+        <result column="DEL_FLAG" property="delFlag" jdbcType="DECIMAL"/>
+        <result column="BUY_CONTACTS_NAME" property="buyContactsName" jdbcType="VARCHAR"/>
+        <result column="SELL_COMPANY_NAME" property="sellCompanyName" jdbcType="VARCHAR"/>
+        <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="CONTRACT_NAME" property="contractName" jdbcType="VARCHAR"/>
+        <result column="ID" property="id" jdbcType="DECIMAL"/>
+        <result column="BUY_COMPANY_NAME" property="buyCompanyName" jdbcType="VARCHAR"/>
+        <result column="CONTRACT_CODE" property="contractCode" jdbcType="VARCHAR"/>
+        <result column="SELL_CONTACTS_NAME" property="sellContactsName" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Column_List">
+		BUY_CONTACTS_TEL,EFFECTIVE_TIME,SELL_CONTACTS_TEL,UPDATE_TIME,REMARK,
+		DEL_FLAG,BUY_CONTACTS_NAME,SELL_COMPANY_NAME,CREATE_TIME,CONTRACT_NAME,
+		ID,BUY_COMPANY_NAME,CONTRACT_CODE,SELL_CONTACTS_NAME
+    </sql>
+    <insert id="create" parameterClass="purchaseContract">
+        INSERT INTO PURCHASE_CONTRACT(
+			BUY_CONTACTS_TEL,EFFECTIVE_TIME,SELL_CONTACTS_TEL,UPDATE_TIME,REMARK,
+			DEL_FLAG,BUY_CONTACTS_NAME,SELL_COMPANY_NAME,CREATE_TIME,CONTRACT_NAME,
+			ID,BUY_COMPANY_NAME,CONTRACT_CODE,SELL_CONTACTS_NAME
+        )
+        VALUES(
+            #buyContactsTel#,#effectiveTime#,#sellContactsTel#,#updateTime#,#remark#,
+			#delFlag#,#buyContactsName#,#sellCompanyName#,#createTime#,#contractName#,
+			#id#,#buyCompanyName#,#contractCode#,#sellContactsName#
+		)
+    </insert>
+
+    <update id="update" parameterClass="purchaseContract">
+        UPDATE PURCHASE_CONTRACT
+        <dynamic prepend="SET"> 
+        <isNotNull prepend="," property="buyContactsTel">
+            BUY_CONTACTS_TEL = #buyContactsTel#
+        </isNotNull>
+        <isNotNull prepend="," property="effectiveTime">
+            EFFECTIVE_TIME = #effectiveTime#
+        </isNotNull>
+        <isNotNull prepend="," property="sellContactsTel">
+            SELL_CONTACTS_TEL = #sellContactsTel#
+        </isNotNull>
+        <isNotNull prepend="," property="updateTime">
+            UPDATE_TIME = #updateTime#
+        </isNotNull>
+        <isNotNull prepend="," property="remark">
+            REMARK = #remark#
+        </isNotNull>
+        <isNotNull prepend="," property="delFlag">
+            DEL_FLAG = #delFlag#
+        </isNotNull>
+        <isNotNull prepend="," property="buyContactsName">
+            BUY_CONTACTS_NAME = #buyContactsName#
+        </isNotNull>
+        <isNotNull prepend="," property="sellCompanyName">
+            SELL_COMPANY_NAME = #sellCompanyName#
+        </isNotNull>
+        <isNotNull prepend="," property="createTime">
+            CREATE_TIME = #createTime#
+        </isNotNull>
+        <isNotNull prepend="," property="contractName">
+            CONTRACT_NAME = #contractName#
+        </isNotNull>
+        <isNotNull prepend="," property="buyCompanyName">
+            BUY_COMPANY_NAME = #buyCompanyName#
+        </isNotNull>
+        <isNotNull prepend="," property="contractCode">
+            CONTRACT_CODE = #contractCode#
+        </isNotNull>
+        <isNotNull prepend="," property="sellContactsName">
+            SELL_CONTACTS_NAME = #sellContactsName#
+        </isNotNull>
+        </dynamic>
+		WHERE
+            ID = #id# 
+    </update>
+    
+    <delete id="deleteByPrimaryKey" parameterClass="java.lang.Long">
+        DELETE FROM PURCHASE_CONTRACT 
+		WHERE
+            ID = #id# 
+    </delete>
+
+    <select id="findById" resultMap="purchaseContract"
+        parameterClass="java.lang.Long">
+        SELECT 
+			BUY_CONTACTS_TEL,EFFECTIVE_TIME,SELL_CONTACTS_TEL,UPDATE_TIME,REMARK,
+			DEL_FLAG,BUY_CONTACTS_NAME,SELL_COMPANY_NAME,CREATE_TIME,CONTRACT_NAME,
+			ID,BUY_COMPANY_NAME,CONTRACT_CODE,SELL_CONTACTS_NAME
+        FROM PURCHASE_CONTRACT
+        WHERE 
+            ID = #id# 
+    </select>
+    
+    <select id="findBySelective" resultMap="purchaseContract">
+        SELECT 
+			BUY_CONTACTS_TEL,EFFECTIVE_TIME,SELL_CONTACTS_TEL,UPDATE_TIME,REMARK,
+			DEL_FLAG,BUY_CONTACTS_NAME,SELL_COMPANY_NAME,CREATE_TIME,CONTRACT_NAME,
+			ID,BUY_COMPANY_NAME,CONTRACT_CODE,SELL_CONTACTS_NAME
+        FROM PURCHASE_CONTRACT
+        <dynamic prepend="WHERE"> 
+        <isNotNull prepend="AND" property="buyContactsTel">
+            BUY_CONTACTS_TEL = #buyContactsTel# 
+        </isNotNull>
+        <isNotNull prepend="AND" property="effectiveTime">
+            EFFECTIVE_TIME = #effectiveTime# 
+        </isNotNull>
+        <isNotNull prepend="AND" property="sellContactsTel">
+            SELL_CONTACTS_TEL = #sellContactsTel# 
+        </isNotNull>
+        <isNotNull prepend="AND" property="updateTime">
+            UPDATE_TIME = #updateTime# 
+        </isNotNull>
+        <isNotNull prepend="AND" property="remark">
+            REMARK = #remark# 
+        </isNotNull>
+        <isNotNull prepend="AND" property="delFlag">
+            DEL_FLAG = #delFlag# 
+        </isNotNull>
+        <isNotNull prepend="AND" property="buyContactsName">
+            BUY_CONTACTS_NAME = #buyContactsName# 
+        </isNotNull>
+        <isNotNull prepend="AND" property="sellCompanyName">
+            SELL_COMPANY_NAME = #sellCompanyName# 
+        </isNotNull>
+        <isNotNull prepend="AND" property="createTime">
+            CREATE_TIME = #createTime# 
+        </isNotNull>
+        <isNotNull prepend="AND" property="contractName">
+            CONTRACT_NAME = #contractName# 
+        </isNotNull>
+        <isNotNull prepend="AND" property="id">
+            ID = #id# 
+        </isNotNull>
+        <isNotNull prepend="AND" property="buyCompanyName">
+            BUY_COMPANY_NAME = #buyCompanyName# 
+        </isNotNull>
+        <isNotNull prepend="AND" property="contractCode">
+            CONTRACT_CODE = #contractCode# 
+        </isNotNull>
+        <isNotNull prepend="AND" property="sellContactsName">
+            SELL_CONTACTS_NAME = #sellContactsName# 
+        </isNotNull>
+        </dynamic>
+    </select>
+
+    <select id="findBySelective_COUNT"  resultClass="java.lang.Integer">
+        SELECT count(*) FROM PURCHASE_CONTRACT
+        <dynamic prepend="WHERE">
+        <isNotNull prepend="AND" property="buyContactsTel">
+            BUY_CONTACTS_TEL = #buyContactsTel# 
+        </isNotNull>
+        <isNotNull prepend="AND" property="effectiveTime">
+            EFFECTIVE_TIME = #effectiveTime# 
+        </isNotNull>
+        <isNotNull prepend="AND" property="sellContactsTel">
+            SELL_CONTACTS_TEL = #sellContactsTel# 
+        </isNotNull>
+        <isNotNull prepend="AND" property="updateTime">
+            UPDATE_TIME = #updateTime# 
+        </isNotNull>
+        <isNotNull prepend="AND" property="remark">
+            REMARK = #remark# 
+        </isNotNull>
+        <isNotNull prepend="AND" property="delFlag">
+            DEL_FLAG = #delFlag# 
+        </isNotNull>
+        <isNotNull prepend="AND" property="buyContactsName">
+            BUY_CONTACTS_NAME = #buyContactsName# 
+        </isNotNull>
+        <isNotNull prepend="AND" property="sellCompanyName">
+            SELL_COMPANY_NAME = #sellCompanyName# 
+        </isNotNull>
+        <isNotNull prepend="AND" property="createTime">
+            CREATE_TIME = #createTime# 
+        </isNotNull>
+        <isNotNull prepend="AND" property="contractName">
+            CONTRACT_NAME = #contractName# 
+        </isNotNull>
+        <isNotNull prepend="AND" property="id">
+            ID = #id# 
+        </isNotNull>
+        <isNotNull prepend="AND" property="buyCompanyName">
+            BUY_COMPANY_NAME = #buyCompanyName# 
+        </isNotNull>
+        <isNotNull prepend="AND" property="contractCode">
+            CONTRACT_CODE = #contractCode# 
+        </isNotNull>
+        <isNotNull prepend="AND" property="sellContactsName">
+            SELL_CONTACTS_NAME = #sellContactsName# 
+        </isNotNull>
+        </dynamic>
+    </select>
+</sqlMap>

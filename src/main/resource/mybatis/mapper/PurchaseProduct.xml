@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="purchaseproduct">
+	<typeAlias alias="purchaseProduct" type="com.xcm.open.core.model.PurchaseProduct"/>
+    <resultMap id="purchaseProduct" class="com.xcm.open.core.model.PurchaseProduct">
+        <result column="PRODUCT_MODEL" property="productModel" jdbcType="VARCHAR"/>
+        <result column="EFFECTIVE_TIME" property="effectiveTime" jdbcType="TIMESTAMP"/>
+        <result column="NUM" property="num" jdbcType="VARCHAR"/>
+        <result column="PRODUCT_SPECIFICATIONS" property="productSpecifications" jdbcType="VARCHAR"/>
+        <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="REMARK" property="remark" jdbcType="VARCHAR"/>
+        <result column="DEL_FLAG" property="delFlag" jdbcType="DECIMAL"/>
+        <result column="PRODUCT_NAME" property="productName" jdbcType="VARCHAR"/>
+        <result column="TOTAL_AMOUNT" property="totalAmount" jdbcType="TIMESTAMP"/>
+        <result column="UNIT" property="unit" jdbcType="VARCHAR"/>
+        <result column="PRICE" property="price" jdbcType="VARCHAR"/>
+        <result column="CONTRACT_ID" property="contractId" jdbcType="DECIMAL"/>
+        <result column="ID" property="id" jdbcType="DECIMAL"/>
+        <result column="PER_VALUE" property="perValue" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Column_List">
+		PRODUCT_MODEL,EFFECTIVE_TIME,NUM,PRODUCT_SPECIFICATIONS,UPDATE_TIME,
+		REMARK,DEL_FLAG,PRODUCT_NAME,TOTAL_AMOUNT,UNIT,
+		PRICE,CONTRACT_ID,ID,PER_VALUE
+    </sql>
+    <insert id="create" parameterClass="purchaseProduct">
+        INSERT INTO PURCHASE_PRODUCT(
+			PRODUCT_MODEL,EFFECTIVE_TIME,NUM,PRODUCT_SPECIFICATIONS,UPDATE_TIME,
+			REMARK,DEL_FLAG,PRODUCT_NAME,TOTAL_AMOUNT,UNIT,
+			PRICE,CONTRACT_ID,ID,PER_VALUE
+        )
+        VALUES(
+            #productModel#,#effectiveTime#,#num#,#productSpecifications#,#updateTime#,
+			#remark#,#delFlag#,#productName#,#totalAmount#,#unit#,
+			#price#,#contractId#,#id#,#perValue#
+		)
+    </insert>
+
+    <update id="update" parameterClass="purchaseProduct">
+        UPDATE PURCHASE_PRODUCT
+        <dynamic prepend="SET"> 
+        <isNotNull prepend="," property="productModel">
+            PRODUCT_MODEL = #productModel#
+        </isNotNull>
+        <isNotNull prepend="," property="effectiveTime">
+            EFFECTIVE_TIME = #effectiveTime#
+        </isNotNull>
+        <isNotNull prepend="," property="num">
+            NUM = #num#
+        </isNotNull>
+        <isNotNull prepend="," property="productSpecifications">
+            PRODUCT_SPECIFICATIONS = #productSpecifications#
+        </isNotNull>
+        <isNotNull prepend="," property="updateTime">
+            UPDATE_TIME = #updateTime#
+        </isNotNull>
+        <isNotNull prepend="," property="remark">
+            REMARK = #remark#
+        </isNotNull>
+        <isNotNull prepend="," property="delFlag">
+            DEL_FLAG = #delFlag#
+        </isNotNull>
+        <isNotNull prepend="," property="productName">
+            PRODUCT_NAME = #productName#
+        </isNotNull>
+        <isNotNull prepend="," property="totalAmount">
+            TOTAL_AMOUNT = #totalAmount#
+        </isNotNull>
+        <isNotNull prepend="," property="unit">
+            UNIT = #unit#
+        </isNotNull>
+        <isNotNull prepend="," property="price">
+            PRICE = #price#
+        </isNotNull>
+        <isNotNull prepend="," property="contractId">
+            CONTRACT_ID = #contractId#
+        </isNotNull>
+        <isNotNull prepend="," property="perValue">
+            PER_VALUE = #perValue#
+        </isNotNull>
+        </dynamic>
+		WHERE
+            ID = #id# 
+    </update>
+    
+    <delete id="deleteByPrimaryKey" parameterClass="java.lang.Long">
+        DELETE FROM PURCHASE_PRODUCT 
+		WHERE
+            ID = #id# 
+    </delete>
+
+    <select id="findById" resultMap="purchaseProduct"
+        parameterClass="java.lang.Long">
+        SELECT 
+			PRODUCT_MODEL,EFFECTIVE_TIME,NUM,PRODUCT_SPECIFICATIONS,UPDATE_TIME,
+			REMARK,DEL_FLAG,PRODUCT_NAME,TOTAL_AMOUNT,UNIT,
+			PRICE,CONTRACT_ID,ID,PER_VALUE
+        FROM PURCHASE_PRODUCT
+        WHERE 
+            ID = #id# 
+    </select>
+    
+    <select id="findBySelective" resultMap="purchaseProduct">
+        SELECT 
+			PRODUCT_MODEL,EFFECTIVE_TIME,NUM,PRODUCT_SPECIFICATIONS,UPDATE_TIME,
+			REMARK,DEL_FLAG,PRODUCT_NAME,TOTAL_AMOUNT,UNIT,
+			PRICE,CONTRACT_ID,ID,PER_VALUE
+        FROM PURCHASE_PRODUCT
+        <dynamic prepend="WHERE"> 
+        <isNotNull prepend="AND" property="productModel">
+            PRODUCT_MODEL = #productModel# 
+        </isNotNull>
+        <isNotNull prepend="AND" property="effectiveTime">
+            EFFECTIVE_TIME = #effectiveTime# 
+        </isNotNull>
+        <isNotNull prepend="AND" property="num">
+            NUM = #num# 
+        </isNotNull>
+        <isNotNull prepend="AND" property="productSpecifications">
+            PRODUCT_SPECIFICATIONS = #productSpecifications# 
+        </isNotNull>
+        <isNotNull prepend="AND" property="updateTime">
+            UPDATE_TIME = #updateTime# 
+        </isNotNull>
+        <isNotNull prepend="AND" property="remark">
+            REMARK = #remark# 
+        </isNotNull>
+        <isNotNull prepend="AND" property="delFlag">
+            DEL_FLAG = #delFlag# 
+        </isNotNull>
+        <isNotNull prepend="AND" property="productName">
+            PRODUCT_NAME = #productName# 
+        </isNotNull>
+        <isNotNull prepend="AND" property="totalAmount">
+            TOTAL_AMOUNT = #totalAmount# 
+        </isNotNull>
+        <isNotNull prepend="AND" property="unit">
+            UNIT = #unit# 
+        </isNotNull>
+        <isNotNull prepend="AND" property="price">
+            PRICE = #price# 
+        </isNotNull>
+        <isNotNull prepend="AND" property="contractId">
+            CONTRACT_ID = #contractId# 
+        </isNotNull>
+        <isNotNull prepend="AND" property="id">
+            ID = #id# 
+        </isNotNull>
+        <isNotNull prepend="AND" property="perValue">
+            PER_VALUE = #perValue# 
+        </isNotNull>
+        </dynamic>
+    </select>
+
+    <select id="findBySelective_COUNT"  resultClass="java.lang.Integer">
+        SELECT count(*) FROM PURCHASE_PRODUCT
+        <dynamic prepend="WHERE">
+        <isNotNull prepend="AND" property="productModel">
+            PRODUCT_MODEL = #productModel# 
+        </isNotNull>
+        <isNotNull prepend="AND" property="effectiveTime">
+            EFFECTIVE_TIME = #effectiveTime# 
+        </isNotNull>
+        <isNotNull prepend="AND" property="num">
+            NUM = #num# 
+        </isNotNull>
+        <isNotNull prepend="AND" property="productSpecifications">
+            PRODUCT_SPECIFICATIONS = #productSpecifications# 
+        </isNotNull>
+        <isNotNull prepend="AND" property="updateTime">
+            UPDATE_TIME = #updateTime# 
+        </isNotNull>
+        <isNotNull prepend="AND" property="remark">
+            REMARK = #remark# 
+        </isNotNull>
+        <isNotNull prepend="AND" property="delFlag">
+            DEL_FLAG = #delFlag# 
+        </isNotNull>
+        <isNotNull prepend="AND" property="productName">
+            PRODUCT_NAME = #productName# 
+        </isNotNull>
+        <isNotNull prepend="AND" property="totalAmount">
+            TOTAL_AMOUNT = #totalAmount# 
+        </isNotNull>
+        <isNotNull prepend="AND" property="unit">
+            UNIT = #unit# 
+        </isNotNull>
+        <isNotNull prepend="AND" property="price">
+            PRICE = #price# 
+        </isNotNull>
+        <isNotNull prepend="AND" property="contractId">
+            CONTRACT_ID = #contractId# 
+        </isNotNull>
+        <isNotNull prepend="AND" property="id">
+            ID = #id# 
+        </isNotNull>
+        <isNotNull prepend="AND" property="perValue">
+            PER_VALUE = #perValue# 
+        </isNotNull>
+        </dynamic>
+    </select>
+</sqlMap>
