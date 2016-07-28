@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
-<sqlMap namespace="purchasecontract">
-	<typeAlias alias="purchaseContract" type="com.xcm.open.core.model.PurchaseContract"/>
-    <resultMap id="purchaseContract" class="com.xcm.open.core.model.PurchaseContract">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc.easy.trade.dao.purchase.IPurchaseContractMapper">
+    <resultMap id="purchaseContract" type="com.yc.easy.trade.domain.purchase.PurchaseContract">
         <result column="BUY_CONTACTS_TEL" property="buyContactsTel" jdbcType="VARCHAR"/>
         <result column="EFFECTIVE_TIME" property="effectiveTime" jdbcType="TIMESTAMP"/>
         <result column="SELL_CONTACTS_TEL" property="sellContactsTel" jdbcType="VARCHAR"/>
@@ -24,7 +24,7 @@
 		DEL_FLAG,BUY_CONTACTS_NAME,SELL_COMPANY_NAME,CREATE_TIME,CONTRACT_NAME,
 		ID,BUY_COMPANY_NAME,CONTRACT_CODE,SELL_CONTACTS_NAME
     </sql>
-    <insert id="create" parameterClass="purchaseContract">
+    <insert id="create" parameterType="PurchaseContract">
         INSERT INTO PURCHASE_CONTRACT(
 			BUY_CONTACTS_TEL,EFFECTIVE_TIME,SELL_CONTACTS_TEL,UPDATE_TIME,REMARK,
 			DEL_FLAG,BUY_CONTACTS_NAME,SELL_COMPANY_NAME,CREATE_TIME,CONTRACT_NAME,
@@ -37,61 +37,62 @@
 		)
     </insert>
 
-    <update id="update" parameterClass="purchaseContract">
-        UPDATE PURCHASE_CONTRACT
-        <dynamic prepend="SET"> 
-        <isNotNull prepend="," property="buyContactsTel">
-            BUY_CONTACTS_TEL = #buyContactsTel#
-        </isNotNull>
-        <isNotNull prepend="," property="effectiveTime">
-            EFFECTIVE_TIME = #effectiveTime#
-        </isNotNull>
-        <isNotNull prepend="," property="sellContactsTel">
-            SELL_CONTACTS_TEL = #sellContactsTel#
-        </isNotNull>
-        <isNotNull prepend="," property="updateTime">
-            UPDATE_TIME = #updateTime#
-        </isNotNull>
-        <isNotNull prepend="," property="remark">
-            REMARK = #remark#
-        </isNotNull>
-        <isNotNull prepend="," property="delFlag">
-            DEL_FLAG = #delFlag#
-        </isNotNull>
-        <isNotNull prepend="," property="buyContactsName">
-            BUY_CONTACTS_NAME = #buyContactsName#
-        </isNotNull>
-        <isNotNull prepend="," property="sellCompanyName">
-            SELL_COMPANY_NAME = #sellCompanyName#
-        </isNotNull>
-        <isNotNull prepend="," property="createTime">
-            CREATE_TIME = #createTime#
-        </isNotNull>
-        <isNotNull prepend="," property="contractName">
-            CONTRACT_NAME = #contractName#
-        </isNotNull>
-        <isNotNull prepend="," property="buyCompanyName">
-            BUY_COMPANY_NAME = #buyCompanyName#
-        </isNotNull>
-        <isNotNull prepend="," property="contractCode">
-            CONTRACT_CODE = #contractCode#
-        </isNotNull>
-        <isNotNull prepend="," property="sellContactsName">
-            SELL_CONTACTS_NAME = #sellContactsName#
-        </isNotNull>
-        </dynamic>
+    <update id="update" parameterType="PurchaseContract">
+        UPDATE PURCHASE_CONTRACT SET
+        <if test="id != null">
+            ID = #id#
+        </if>
+        <if test="buyContactsTel != null">
+            ,BUY_CONTACTS_TEL = #buyContactsTel#
+        </if>
+        <if test="effectiveTime != null">
+            ,EFFECTIVE_TIME = #effectiveTime#
+        </if>
+        <if test="sellContactsTel != null">
+            ,SELL_CONTACTS_TEL = #sellContactsTel#
+        </if>
+        <if test="updateTime != null">
+            ,UPDATE_TIME = #updateTime#
+        </if>
+        <if test="remark != null">
+            ,REMARK = #remark#
+        </if>
+        <if test="delFlag != null">
+            ,DEL_FLAG = #delFlag#
+        </if>
+        <if test="buyContactsName != null">
+            ,BUY_CONTACTS_NAME = #buyContactsName#
+        </if>
+        <if test="sellCompanyName != null">
+            ,SELL_COMPANY_NAME = #sellCompanyName#
+        </if>
+        <if test="createTime != null">
+            ,CREATE_TIME = #createTime#
+        </if>
+        <if test="contractName != null">
+            ,CONTRACT_NAME = #contractName#
+        </if>
+        <if test="buyCompanyName != null">
+            ,BUY_COMPANY_NAME = #buyCompanyName#
+        </if>
+        <if test="contractCode != null">
+            ,CONTRACT_CODE = #contractCode#
+        </if>
+        <if test="sellContactsName != null">
+            ,SELL_CONTACTS_NAME = #sellContactsName#
+        </if>
 		WHERE
             ID = #id# 
     </update>
     
-    <delete id="deleteByPrimaryKey" parameterClass="java.lang.Long">
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
         DELETE FROM PURCHASE_CONTRACT 
 		WHERE
             ID = #id# 
     </delete>
 
     <select id="findById" resultMap="purchaseContract"
-        parameterClass="java.lang.Long">
+        parameterType="java.lang.Long">
         SELECT 
 			BUY_CONTACTS_TEL,EFFECTIVE_TIME,SELL_CONTACTS_TEL,UPDATE_TIME,REMARK,
 			DEL_FLAG,BUY_CONTACTS_NAME,SELL_COMPANY_NAME,CREATE_TIME,CONTRACT_NAME,
@@ -106,98 +107,94 @@
 			BUY_CONTACTS_TEL,EFFECTIVE_TIME,SELL_CONTACTS_TEL,UPDATE_TIME,REMARK,
 			DEL_FLAG,BUY_CONTACTS_NAME,SELL_COMPANY_NAME,CREATE_TIME,CONTRACT_NAME,
 			ID,BUY_COMPANY_NAME,CONTRACT_CODE,SELL_CONTACTS_NAME
-        FROM PURCHASE_CONTRACT
-        <dynamic prepend="WHERE"> 
-        <isNotNull prepend="AND" property="buyContactsTel">
-            BUY_CONTACTS_TEL = #buyContactsTel# 
-        </isNotNull>
-        <isNotNull prepend="AND" property="effectiveTime">
-            EFFECTIVE_TIME = #effectiveTime# 
-        </isNotNull>
-        <isNotNull prepend="AND" property="sellContactsTel">
-            SELL_CONTACTS_TEL = #sellContactsTel# 
-        </isNotNull>
-        <isNotNull prepend="AND" property="updateTime">
-            UPDATE_TIME = #updateTime# 
-        </isNotNull>
-        <isNotNull prepend="AND" property="remark">
-            REMARK = #remark# 
-        </isNotNull>
-        <isNotNull prepend="AND" property="delFlag">
-            DEL_FLAG = #delFlag# 
-        </isNotNull>
-        <isNotNull prepend="AND" property="buyContactsName">
-            BUY_CONTACTS_NAME = #buyContactsName# 
-        </isNotNull>
-        <isNotNull prepend="AND" property="sellCompanyName">
-            SELL_COMPANY_NAME = #sellCompanyName# 
-        </isNotNull>
-        <isNotNull prepend="AND" property="createTime">
-            CREATE_TIME = #createTime# 
-        </isNotNull>
-        <isNotNull prepend="AND" property="contractName">
-            CONTRACT_NAME = #contractName# 
-        </isNotNull>
-        <isNotNull prepend="AND" property="id">
-            ID = #id# 
-        </isNotNull>
-        <isNotNull prepend="AND" property="buyCompanyName">
-            BUY_COMPANY_NAME = #buyCompanyName# 
-        </isNotNull>
-        <isNotNull prepend="AND" property="contractCode">
-            CONTRACT_CODE = #contractCode# 
-        </isNotNull>
-        <isNotNull prepend="AND" property="sellContactsName">
-            SELL_CONTACTS_NAME = #sellContactsName# 
-        </isNotNull>
-        </dynamic>
+        FROM PURCHASE_CONTRACT WHERE 1 = 1
+        <if test="buyContactsTel != null">
+           and BUY_CONTACTS_TEL = #buyContactsTel#
+        </if>
+        <if test="effectiveTime != null">
+           and EFFECTIVE_TIME = #effectiveTime#
+        </if>
+        <if test="sellContactsTel != null">
+           and SELL_CONTACTS_TEL = #sellContactsTel#
+        </if>
+        <if test="updateTime != null">
+           and UPDATE_TIME = #updateTime#
+        </if>
+        <if test="remark != null">
+           and REMARK = #remark#
+        </if>
+        <if test="delFlag != null">
+           and DEL_FLAG = #delFlag#
+        </if>
+        <if test="buyContactsName != null">
+           and BUY_CONTACTS_NAME = #buyContactsName#
+        </if>
+        <if test="sellCompanyName != null">
+           and SELL_COMPANY_NAME = #sellCompanyName#
+        </if>
+        <if test="createTime != null">
+           and CREATE_TIME = #createTime#
+        </if>
+        <if test="contractName != null">
+           and CONTRACT_NAME = #contractName#
+        </if>
+        <if test="id != null">
+           and ID = #id#
+        </if>
+        <if test="buyCompanyName != null">
+           and BUY_COMPANY_NAME = #buyCompanyName#
+        </if>
+        <if test="contractCode != null">
+           and CONTRACT_CODE = #contractCode#
+        </if>
+        <if test="sellContactsName != null">
+           and SELL_CONTACTS_NAME = #sellContactsName#
+        </if>
     </select>
 
-    <select id="findBySelective_COUNT"  resultClass="java.lang.Integer">
-        SELECT count(*) FROM PURCHASE_CONTRACT
-        <dynamic prepend="WHERE">
-        <isNotNull prepend="AND" property="buyContactsTel">
-            BUY_CONTACTS_TEL = #buyContactsTel# 
-        </isNotNull>
-        <isNotNull prepend="AND" property="effectiveTime">
-            EFFECTIVE_TIME = #effectiveTime# 
-        </isNotNull>
-        <isNotNull prepend="AND" property="sellContactsTel">
-            SELL_CONTACTS_TEL = #sellContactsTel# 
-        </isNotNull>
-        <isNotNull prepend="AND" property="updateTime">
-            UPDATE_TIME = #updateTime# 
-        </isNotNull>
-        <isNotNull prepend="AND" property="remark">
-            REMARK = #remark# 
-        </isNotNull>
-        <isNotNull prepend="AND" property="delFlag">
-            DEL_FLAG = #delFlag# 
-        </isNotNull>
-        <isNotNull prepend="AND" property="buyContactsName">
-            BUY_CONTACTS_NAME = #buyContactsName# 
-        </isNotNull>
-        <isNotNull prepend="AND" property="sellCompanyName">
-            SELL_COMPANY_NAME = #sellCompanyName# 
-        </isNotNull>
-        <isNotNull prepend="AND" property="createTime">
-            CREATE_TIME = #createTime# 
-        </isNotNull>
-        <isNotNull prepend="AND" property="contractName">
-            CONTRACT_NAME = #contractName# 
-        </isNotNull>
-        <isNotNull prepend="AND" property="id">
-            ID = #id# 
-        </isNotNull>
-        <isNotNull prepend="AND" property="buyCompanyName">
-            BUY_COMPANY_NAME = #buyCompanyName# 
-        </isNotNull>
-        <isNotNull prepend="AND" property="contractCode">
-            CONTRACT_CODE = #contractCode# 
-        </isNotNull>
-        <isNotNull prepend="AND" property="sellContactsName">
-            SELL_CONTACTS_NAME = #sellContactsName# 
-        </isNotNull>
-        </dynamic>
+    <select id="findBySelective_COUNT"  resultType="java.lang.Integer">
+        SELECT count(*) FROM PURCHASE_CONTRACT WHERE 1 = 1
+        <if test="buyContactsTel != null">
+           and BUY_CONTACTS_TEL = #buyContactsTel#
+        </if>
+        <if test="effectiveTime != null">
+           and EFFECTIVE_TIME = #effectiveTime#
+        </if>
+        <if test="sellContactsTel != null">
+           and SELL_CONTACTS_TEL = #sellContactsTel#
+        </if>
+        <if test="updateTime != null">
+           and UPDATE_TIME = #updateTime#
+        </if>
+        <if test="remark != null">
+           and REMARK = #remark#
+        </if>
+        <if test="delFlag != null">
+           and DEL_FLAG = #delFlag#
+        </if>
+        <if test="buyContactsName != null">
+           and BUY_CONTACTS_NAME = #buyContactsName#
+        </if>
+        <if test="sellCompanyName != null">
+           and SELL_COMPANY_NAME = #sellCompanyName#
+        </if>
+        <if test="createTime != null">
+           and CREATE_TIME = #createTime#
+        </if>
+        <if test="contractName != null">
+           and CONTRACT_NAME = #contractName#
+        </if>
+        <if test="id != null">
+           and ID = #id#
+        </if>
+        <if test="buyCompanyName != null">
+           and BUY_COMPANY_NAME = #buyCompanyName#
+        </if>
+        <if test="contractCode != null">
+           and CONTRACT_CODE = #contractCode#
+        </if>
+        <if test="sellContactsName != null">
+           and SELL_CONTACTS_NAME = #sellContactsName#
+        </if>
     </select>
-</sqlMap>
+</mapper>

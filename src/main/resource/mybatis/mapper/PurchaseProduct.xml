@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
-<sqlMap namespace="purchaseproduct">
-	<typeAlias alias="purchaseProduct" type="com.xcm.open.core.model.PurchaseProduct"/>
-    <resultMap id="purchaseProduct" class="com.xcm.open.core.model.PurchaseProduct">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc.easy.trade.dao.purchase.IPurchaseProductMapper">
+    <resultMap id="purchaseProduct" type="com.yc.easy.trade.domain.purchase.PurchaseProduct">
         <result column="PRODUCT_MODEL" property="productModel" jdbcType="VARCHAR"/>
         <result column="EFFECTIVE_TIME" property="effectiveTime" jdbcType="TIMESTAMP"/>
         <result column="NUM" property="num" jdbcType="VARCHAR"/>
@@ -24,7 +24,7 @@
 		REMARK,DEL_FLAG,PRODUCT_NAME,TOTAL_AMOUNT,UNIT,
 		PRICE,CONTRACT_ID,ID,PER_VALUE
     </sql>
-    <insert id="create" parameterClass="purchaseProduct">
+    <insert id="create" parameterType="PurchaseProduct">
         INSERT INTO PURCHASE_PRODUCT(
 			PRODUCT_MODEL,EFFECTIVE_TIME,NUM,PRODUCT_SPECIFICATIONS,UPDATE_TIME,
 			REMARK,DEL_FLAG,PRODUCT_NAME,TOTAL_AMOUNT,UNIT,
@@ -37,61 +37,62 @@
 		)
     </insert>
 
-    <update id="update" parameterClass="purchaseProduct">
-        UPDATE PURCHASE_PRODUCT
-        <dynamic prepend="SET"> 
-        <isNotNull prepend="," property="productModel">
-            PRODUCT_MODEL = #productModel#
-        </isNotNull>
-        <isNotNull prepend="," property="effectiveTime">
-            EFFECTIVE_TIME = #effectiveTime#
-        </isNotNull>
-        <isNotNull prepend="," property="num">
-            NUM = #num#
-        </isNotNull>
-        <isNotNull prepend="," property="productSpecifications">
-            PRODUCT_SPECIFICATIONS = #productSpecifications#
-        </isNotNull>
-        <isNotNull prepend="," property="updateTime">
-            UPDATE_TIME = #updateTime#
-        </isNotNull>
-        <isNotNull prepend="," property="remark">
-            REMARK = #remark#
-        </isNotNull>
-        <isNotNull prepend="," property="delFlag">
-            DEL_FLAG = #delFlag#
-        </isNotNull>
-        <isNotNull prepend="," property="productName">
-            PRODUCT_NAME = #productName#
-        </isNotNull>
-        <isNotNull prepend="," property="totalAmount">
-            TOTAL_AMOUNT = #totalAmount#
-        </isNotNull>
-        <isNotNull prepend="," property="unit">
-            UNIT = #unit#
-        </isNotNull>
-        <isNotNull prepend="," property="price">
-            PRICE = #price#
-        </isNotNull>
-        <isNotNull prepend="," property="contractId">
-            CONTRACT_ID = #contractId#
-        </isNotNull>
-        <isNotNull prepend="," property="perValue">
-            PER_VALUE = #perValue#
-        </isNotNull>
-        </dynamic>
+    <update id="update" parameterType="PurchaseProduct">
+        UPDATE PURCHASE_PRODUCT SET
+        <if test="id != null">
+            ID = #id#
+        </if>
+        <if test="productModel != null">
+            ,PRODUCT_MODEL = #productModel#
+        </if>
+        <if test="effectiveTime != null">
+            ,EFFECTIVE_TIME = #effectiveTime#
+        </if>
+        <if test="num != null">
+            ,NUM = #num#
+        </if>
+        <if test="productSpecifications != null">
+            ,PRODUCT_SPECIFICATIONS = #productSpecifications#
+        </if>
+        <if test="updateTime != null">
+            ,UPDATE_TIME = #updateTime#
+        </if>
+        <if test="remark != null">
+            ,REMARK = #remark#
+        </if>
+        <if test="delFlag != null">
+            ,DEL_FLAG = #delFlag#
+        </if>
+        <if test="productName != null">
+            ,PRODUCT_NAME = #productName#
+        </if>
+        <if test="totalAmount != null">
+            ,TOTAL_AMOUNT = #totalAmount#
+        </if>
+        <if test="unit != null">
+            ,UNIT = #unit#
+        </if>
+        <if test="price != null">
+            ,PRICE = #price#
+        </if>
+        <if test="contractId != null">
+            ,CONTRACT_ID = #contractId#
+        </if>
+        <if test="perValue != null">
+            ,PER_VALUE = #perValue#
+        </if>
 		WHERE
             ID = #id# 
     </update>
     
-    <delete id="deleteByPrimaryKey" parameterClass="java.lang.Long">
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
         DELETE FROM PURCHASE_PRODUCT 
 		WHERE
             ID = #id# 
     </delete>
 
     <select id="findById" resultMap="purchaseProduct"
-        parameterClass="java.lang.Long">
+        parameterType="java.lang.Long">
         SELECT 
 			PRODUCT_MODEL,EFFECTIVE_TIME,NUM,PRODUCT_SPECIFICATIONS,UPDATE_TIME,
 			REMARK,DEL_FLAG,PRODUCT_NAME,TOTAL_AMOUNT,UNIT,
@@ -106,98 +107,94 @@
 			PRODUCT_MODEL,EFFECTIVE_TIME,NUM,PRODUCT_SPECIFICATIONS,UPDATE_TIME,
 			REMARK,DEL_FLAG,PRODUCT_NAME,TOTAL_AMOUNT,UNIT,
 			PRICE,CONTRACT_ID,ID,PER_VALUE
-        FROM PURCHASE_PRODUCT
-        <dynamic prepend="WHERE"> 
-        <isNotNull prepend="AND" property="productModel">
-            PRODUCT_MODEL = #productModel# 
-        </isNotNull>
-        <isNotNull prepend="AND" property="effectiveTime">
-            EFFECTIVE_TIME = #effectiveTime# 
-        </isNotNull>
-        <isNotNull prepend="AND" property="num">
-            NUM = #num# 
-        </isNotNull>
-        <isNotNull prepend="AND" property="productSpecifications">
-            PRODUCT_SPECIFICATIONS = #productSpecifications# 
-        </isNotNull>
-        <isNotNull prepend="AND" property="updateTime">
-            UPDATE_TIME = #updateTime# 
-        </isNotNull>
-        <isNotNull prepend="AND" property="remark">
-            REMARK = #remark# 
-        </isNotNull>
-        <isNotNull prepend="AND" property="delFlag">
-            DEL_FLAG = #delFlag# 
-        </isNotNull>
-        <isNotNull prepend="AND" property="productName">
-            PRODUCT_NAME = #productName# 
-        </isNotNull>
-        <isNotNull prepend="AND" property="totalAmount">
-            TOTAL_AMOUNT = #totalAmount# 
-        </isNotNull>
-        <isNotNull prepend="AND" property="unit">
-            UNIT = #unit# 
-        </isNotNull>
-        <isNotNull prepend="AND" property="price">
-            PRICE = #price# 
-        </isNotNull>
-        <isNotNull prepend="AND" property="contractId">
-            CONTRACT_ID = #contractId# 
-        </isNotNull>
-        <isNotNull prepend="AND" property="id">
-            ID = #id# 
-        </isNotNull>
-        <isNotNull prepend="AND" property="perValue">
-            PER_VALUE = #perValue# 
-        </isNotNull>
-        </dynamic>
+        FROM PURCHASE_PRODUCT WHERE 1 = 1
+        <if test="productModel != null">
+           and PRODUCT_MODEL = #productModel#
+        </if>
+        <if test="effectiveTime != null">
+           and EFFECTIVE_TIME = #effectiveTime#
+        </if>
+        <if test="num != null">
+           and NUM = #num#
+        </if>
+        <if test="productSpecifications != null">
+           and PRODUCT_SPECIFICATIONS = #productSpecifications#
+        </if>
+        <if test="updateTime != null">
+           and UPDATE_TIME = #updateTime#
+        </if>
+        <if test="remark != null">
+           and REMARK = #remark#
+        </if>
+        <if test="delFlag != null">
+           and DEL_FLAG = #delFlag#
+        </if>
+        <if test="productName != null">
+           and PRODUCT_NAME = #productName#
+        </if>
+        <if test="totalAmount != null">
+           and TOTAL_AMOUNT = #totalAmount#
+        </if>
+        <if test="unit != null">
+           and UNIT = #unit#
+        </if>
+        <if test="price != null">
+           and PRICE = #price#
+        </if>
+        <if test="contractId != null">
+           and CONTRACT_ID = #contractId#
+        </if>
+        <if test="id != null">
+           and ID = #id#
+        </if>
+        <if test="perValue != null">
+           and PER_VALUE = #perValue#
+        </if>
     </select>
 
-    <select id="findBySelective_COUNT"  resultClass="java.lang.Integer">
-        SELECT count(*) FROM PURCHASE_PRODUCT
-        <dynamic prepend="WHERE">
-        <isNotNull prepend="AND" property="productModel">
-            PRODUCT_MODEL = #productModel# 
-        </isNotNull>
-        <isNotNull prepend="AND" property="effectiveTime">
-            EFFECTIVE_TIME = #effectiveTime# 
-        </isNotNull>
-        <isNotNull prepend="AND" property="num">
-            NUM = #num# 
-        </isNotNull>
-        <isNotNull prepend="AND" property="productSpecifications">
-            PRODUCT_SPECIFICATIONS = #productSpecifications# 
-        </isNotNull>
-        <isNotNull prepend="AND" property="updateTime">
-            UPDATE_TIME = #updateTime# 
-        </isNotNull>
-        <isNotNull prepend="AND" property="remark">
-            REMARK = #remark# 
-        </isNotNull>
-        <isNotNull prepend="AND" property="delFlag">
-            DEL_FLAG = #delFlag# 
-        </isNotNull>
-        <isNotNull prepend="AND" property="productName">
-            PRODUCT_NAME = #productName# 
-        </isNotNull>
-        <isNotNull prepend="AND" property="totalAmount">
-            TOTAL_AMOUNT = #totalAmount# 
-        </isNotNull>
-        <isNotNull prepend="AND" property="unit">
-            UNIT = #unit# 
-        </isNotNull>
-        <isNotNull prepend="AND" property="price">
-            PRICE = #price# 
-        </isNotNull>
-        <isNotNull prepend="AND" property="contractId">
-            CONTRACT_ID = #contractId# 
-        </isNotNull>
-        <isNotNull prepend="AND" property="id">
-            ID = #id# 
-        </isNotNull>
-        <isNotNull prepend="AND" property="perValue">
-            PER_VALUE = #perValue# 
-        </isNotNull>
-        </dynamic>
+    <select id="findBySelective_COUNT"  resultType="java.lang.Integer">
+        SELECT count(*) FROM PURCHASE_PRODUCT WHERE 1 = 1
+        <if test="productModel != null">
+           and PRODUCT_MODEL = #productModel#
+        </if>
+        <if test="effectiveTime != null">
+           and EFFECTIVE_TIME = #effectiveTime#
+        </if>
+        <if test="num != null">
+           and NUM = #num#
+        </if>
+        <if test="productSpecifications != null">
+           and PRODUCT_SPECIFICATIONS = #productSpecifications#
+        </if>
+        <if test="updateTime != null">
+           and UPDATE_TIME = #updateTime#
+        </if>
+        <if test="remark != null">
+           and REMARK = #remark#
+        </if>
+        <if test="delFlag != null">
+           and DEL_FLAG = #delFlag#
+        </if>
+        <if test="productName != null">
+           and PRODUCT_NAME = #productName#
+        </if>
+        <if test="totalAmount != null">
+           and TOTAL_AMOUNT = #totalAmount#
+        </if>
+        <if test="unit != null">
+           and UNIT = #unit#
+        </if>
+        <if test="price != null">
+           and PRICE = #price#
+        </if>
+        <if test="contractId != null">
+           and CONTRACT_ID = #contractId#
+        </if>
+        <if test="id != null">
+           and ID = #id#
+        </if>
+        <if test="perValue != null">
+           and PER_VALUE = #perValue#
+        </if>
     </select>
-</sqlMap>
+</mapper>
