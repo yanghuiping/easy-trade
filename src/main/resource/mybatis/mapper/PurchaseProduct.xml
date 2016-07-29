@@ -157,16 +157,13 @@
 
 
 	<select id="getPages" resultMap="purchaseProduct" parameterType="Map">
-        SELECT 
-			PRODUCT_MODEL,EFFECTIVE_TIME,NUM,PRODUCT_SPECIFICATIONS,UPDATE_TIME,
-			REMARK,DEL_FLAG,PRODUCT_NAME,TOTAL_AMOUNT,UNIT,
+         SELECT 
+			PRODUCT_MODEL,NUM,PRODUCT_SPECIFICATIONS,UPDATE_TIME,REMARK,
+			DEL_FLAG,PRODUCT_NAME,TOTAL_AMOUNT,UNIT,CREATE_TIME,
 			PRICE,CONTRACT_ID,ID,PER_VALUE
         FROM PURCHASE_PRODUCT WHERE 1 = 1
         <if test="productModel != null">
            and PRODUCT_MODEL = #{productModel}
-        </if>
-        <if test="effectiveTime != null">
-           and EFFECTIVE_TIME = #{effectiveTime}
         </if>
         <if test="num != null">
            and NUM = #{num}
@@ -191,6 +188,9 @@
         </if>
         <if test="unit != null">
            and UNIT = #{unit}
+        </if>
+        <if test="createTime != null">
+           and CREATE_TIME = #{createTime}
         </if>
         <if test="price != null">
            and PRICE = #{price}
@@ -212,9 +212,6 @@
         <if test="productModel != null">
            and PRODUCT_MODEL = #{productModel}
         </if>
-        <if test="effectiveTime != null">
-           and EFFECTIVE_TIME = #{effectiveTime}
-        </if>
         <if test="num != null">
            and NUM = #{num}
         </if>
@@ -238,6 +235,9 @@
         </if>
         <if test="unit != null">
            and UNIT = #{unit}
+        </if>
+        <if test="createTime != null">
+           and CREATE_TIME = #{createTime}
         </if>
         <if test="price != null">
            and PRICE = #{price}

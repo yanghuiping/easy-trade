@@ -98,8 +98,21 @@ public class PurchaseTest extends BaseTest {
 			purchaseProduct.setUpdateTime(new Date());
 			purchaseProduct.setCreateTime(new Date());
 			purchaseProduct.setProductName("产品_"+i);
-			pourchaseProductService.addPurchaseProduct(purchaseProduct);
+			int r = pourchaseProductService.addPurchaseProduct(purchaseProduct);
+			System.out.println(r);
 		}
 	}
 	
+	@Test
+	public void queryPurchaseProductPage(){
+		Map<String,Object> parameterObject = new HashMap<String,Object>();
+		int pageNo = 2;
+		int pageSize = 3;
+		Page page = pourchaseProductService.queryPurchaseProductPaged(parameterObject, pageNo, pageSize);
+		List<PurchaseProduct> list = (List<PurchaseProduct>)page.getData();
+		for(PurchaseProduct purchaseProduct : list){
+			System.out.println(purchaseProduct.getProductName());
+		}
+		System.out.println(list.size());
+	}
 }
