@@ -106,7 +106,7 @@ public class PurchaseTest extends BaseTest {
 	@Test
 	public void queryPurchaseProductPage(){
 		Map<String,Object> parameterObject = new HashMap<String,Object>();
-		int pageNo = 2;
+		int pageNo = 3;
 		int pageSize = 3;
 		Page page = pourchaseProductService.queryPurchaseProductPaged(parameterObject, pageNo, pageSize);
 		List<PurchaseProduct> list = (List<PurchaseProduct>)page.getData();
