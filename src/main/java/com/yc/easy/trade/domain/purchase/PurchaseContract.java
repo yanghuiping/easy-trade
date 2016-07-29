@@ -4,6 +4,9 @@
 *
 **/
 package com.yc.easy.trade.domain.purchase;
+
+import java.math.BigDecimal;
+
 /**
 * purchase_contract
 */
@@ -15,12 +18,12 @@ public class PurchaseContract  implements java.io.Serializable {
     private String sellContactsTel; //供方联系人电话
     private java.util.Date updateTime; //更新时间
     private String remark; //备注
-    private Double delFlag; //删除标识。0：非删除；1：删除
+    private Integer delFlag; //删除标识。0：非删除；1：删除
     private String buyContactsName; //需方联系人姓名
     private String sellCompanyName; //供方公司名称
     private java.util.Date createTime; //添加时间
     private String contractName; //合同名称
-    private Double id; //主键ID，自动生成
+    private Integer id; //主键ID，自动生成
     private String buyCompanyName; //需方公司名称
     private String contractCode; //合同编号
     private String sellContactsName; //供方联系人姓名
@@ -60,11 +63,11 @@ public class PurchaseContract  implements java.io.Serializable {
     public void setRemark (String remark){
         this.remark = remark;
     }
-    public Double getDelFlag (){
+    public Integer getDelFlag (){
         return delFlag;
     }
     
-    public void setDelFlag (Double delFlag){
+    public void setDelFlag (Integer delFlag){
         this.delFlag = delFlag;
     }
     public String getBuyContactsName (){
@@ -95,11 +98,11 @@ public class PurchaseContract  implements java.io.Serializable {
     public void setContractName (String contractName){
         this.contractName = contractName;
     }
-    public Double getId (){
+    public Integer getId (){
         return id;
     }
     
-    public void setId (Double id){
+    public void setId (Integer id){
         this.id = id;
     }
     public String getBuyCompanyName (){

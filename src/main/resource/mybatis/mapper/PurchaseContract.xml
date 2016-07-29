@@ -8,12 +8,12 @@
         <result column="SELL_CONTACTS_TEL" property="sellContactsTel" jdbcType="VARCHAR"/>
         <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP"/>
         <result column="REMARK" property="remark" jdbcType="VARCHAR"/>
-        <result column="DEL_FLAG" property="delFlag" jdbcType="DECIMAL"/>
+        <result column="DEL_FLAG" property="delFlag" jdbcType="INTEGER"/>
         <result column="BUY_CONTACTS_NAME" property="buyContactsName" jdbcType="VARCHAR"/>
         <result column="SELL_COMPANY_NAME" property="sellCompanyName" jdbcType="VARCHAR"/>
         <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP"/>
         <result column="CONTRACT_NAME" property="contractName" jdbcType="VARCHAR"/>
-        <result column="ID" property="id" jdbcType="DECIMAL"/>
+        <result column="ID" property="id" jdbcType="INTEGER"/>
         <result column="BUY_COMPANY_NAME" property="buyCompanyName" jdbcType="VARCHAR"/>
         <result column="CONTRACT_CODE" property="contractCode" jdbcType="VARCHAR"/>
         <result column="SELL_CONTACTS_NAME" property="sellContactsName" jdbcType="VARCHAR"/>
@@ -28,67 +28,67 @@
         INSERT INTO PURCHASE_CONTRACT(
 			BUY_CONTACTS_TEL,EFFECTIVE_TIME,SELL_CONTACTS_TEL,UPDATE_TIME,REMARK,
 			DEL_FLAG,BUY_CONTACTS_NAME,SELL_COMPANY_NAME,CREATE_TIME,CONTRACT_NAME,
-			ID,BUY_COMPANY_NAME,CONTRACT_CODE,SELL_CONTACTS_NAME
+			BUY_COMPANY_NAME,CONTRACT_CODE,SELL_CONTACTS_NAME
         )
         VALUES(
-            #buyContactsTel#,#effectiveTime#,#sellContactsTel#,#updateTime#,#remark#,
-			#delFlag#,#buyContactsName#,#sellCompanyName#,#createTime#,#contractName#,
-			#id#,#buyCompanyName#,#contractCode#,#sellContactsName#
+            #{buyContactsTel},#{effectiveTime},#{sellContactsTel},#{updateTime},#{remark},
+			#{delFlag},#{buyContactsName},#{sellCompanyName},#{createTime},#{contractName},
+			#{buyCompanyName},#{contractCode},#{sellContactsName}
 		)
     </insert>
 
     <update id="update" parameterType="PurchaseContract">
         UPDATE PURCHASE_CONTRACT SET
         <if test="id != null">
-            ID = #id#
+            ID = #{id}
         </if>
         <if test="buyContactsTel != null">
-            ,BUY_CONTACTS_TEL = #buyContactsTel#
+            ,BUY_CONTACTS_TEL = #{buyContactsTel}
         </if>
         <if test="effectiveTime != null">
-            ,EFFECTIVE_TIME = #effectiveTime#
+            ,EFFECTIVE_TIME = #{effectiveTime}
         </if>
         <if test="sellContactsTel != null">
-            ,SELL_CONTACTS_TEL = #sellContactsTel#
+            ,SELL_CONTACTS_TEL = #{sellContactsTel}
         </if>
         <if test="updateTime != null">
-            ,UPDATE_TIME = #updateTime#
+            ,UPDATE_TIME = #{updateTime}
         </if>
         <if test="remark != null">
-            ,REMARK = #remark#
+            ,REMARK = #{remark}
         </if>
         <if test="delFlag != null">
-            ,DEL_FLAG = #delFlag#
+            ,DEL_FLAG = #{delFlag}
         </if>
         <if test="buyContactsName != null">
-            ,BUY_CONTACTS_NAME = #buyContactsName#
+            ,BUY_CONTACTS_NAME = #{buyContactsName}
         </if>
         <if test="sellCompanyName != null">
-            ,SELL_COMPANY_NAME = #sellCompanyName#
+            ,SELL_COMPANY_NAME = #{sellCompanyName}
         </if>
         <if test="createTime != null">
-            ,CREATE_TIME = #createTime#
+            ,CREATE_TIME = #{createTime}
         </if>
         <if test="contractName != null">
-            ,CONTRACT_NAME = #contractName#
+            ,CONTRACT_NAME = #{contractName}
         </if>
         <if test="buyCompanyName != null">
-            ,BUY_COMPANY_NAME = #buyCompanyName#
+            ,BUY_COMPANY_NAME = #{buyCompanyName}
         </if>
         <if test="contractCode != null">
-            ,CONTRACT_CODE = #contractCode#
+            ,CONTRACT_CODE = #{contractCode}
         </if>
         <if test="sellContactsName != null">
-            ,SELL_CONTACTS_NAME = #sellContactsName#
+            ,SELL_CONTACTS_NAME = #{sellContactsName}
         </if>
 		WHERE
-            ID = #id# 
+            ID = #{id} 
     </update>
     
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
         DELETE FROM PURCHASE_CONTRACT 
 		WHERE
-            ID = #id# 
+            ID = #{id} 
     </delete>
 
     <select id="findById" resultMap="purchaseContract"
@@ -99,7 +99,7 @@
 			ID,BUY_COMPANY_NAME,CONTRACT_CODE,SELL_CONTACTS_NAME
         FROM PURCHASE_CONTRACT
         WHERE 
-            ID = #id# 
+            ID = #{id} 
     </select>
     
     <select id="findBySelective" resultMap="purchaseContract">
@@ -109,92 +109,92 @@
 			ID,BUY_COMPANY_NAME,CONTRACT_CODE,SELL_CONTACTS_NAME
         FROM PURCHASE_CONTRACT WHERE 1 = 1
         <if test="buyContactsTel != null">
-           and BUY_CONTACTS_TEL = #buyContactsTel#
+           and BUY_CONTACTS_TEL = #{buyContactsTel}
         </if>
         <if test="effectiveTime != null">
-           and EFFECTIVE_TIME = #effectiveTime#
+           and EFFECTIVE_TIME = #{effectiveTime}
         </if>
         <if test="sellContactsTel != null">
-           and SELL_CONTACTS_TEL = #sellContactsTel#
+           and SELL_CONTACTS_TEL = #{sellContactsTel}
         </if>
         <if test="updateTime != null">
-           and UPDATE_TIME = #updateTime#
+           and UPDATE_TIME = #{updateTime}
         </if>
         <if test="remark != null">
-           and REMARK = #remark#
+           and REMARK = #{remark}
         </if>
         <if test="delFlag != null">
-           and DEL_FLAG = #delFlag#
+           and DEL_FLAG = #{delFlag}
         </if>
         <if test="buyContactsName != null">
-           and BUY_CONTACTS_NAME = #buyContactsName#
+           and BUY_CONTACTS_NAME = #{buyContactsName}
         </if>
         <if test="sellCompanyName != null">
-           and SELL_COMPANY_NAME = #sellCompanyName#
+           and SELL_COMPANY_NAME = #{sellCompanyName}
         </if>
         <if test="createTime != null">
-           and CREATE_TIME = #createTime#
+           and CREATE_TIME = #{createTime}
         </if>
         <if test="contractName != null">
-           and CONTRACT_NAME = #contractName#
+           and CONTRACT_NAME = #{contractName}
         </if>
         <if test="id != null">
-           and ID = #id#
+           and ID = #{id}
         </if>
         <if test="buyCompanyName != null">
-           and BUY_COMPANY_NAME = #buyCompanyName#
+           and BUY_COMPANY_NAME = #{buyCompanyName}
         </if>
         <if test="contractCode != null">
-           and CONTRACT_CODE = #contractCode#
+           and CONTRACT_CODE = #{contractCode}
         </if>
         <if test="sellContactsName != null">
-           and SELL_CONTACTS_NAME = #sellContactsName#
+           and SELL_CONTACTS_NAME = #{sellContactsName}
         </if>
     </select>
 
     <select id="findBySelective_COUNT"  resultType="java.lang.Integer">
         SELECT count(*) FROM PURCHASE_CONTRACT WHERE 1 = 1
         <if test="buyContactsTel != null">
-           and BUY_CONTACTS_TEL = #buyContactsTel#
+           and BUY_CONTACTS_TEL = #{buyContactsTel}
         </if>
         <if test="effectiveTime != null">
-           and EFFECTIVE_TIME = #effectiveTime#
+           and EFFECTIVE_TIME = #{effectiveTime}
         </if>
         <if test="sellContactsTel != null">
-           and SELL_CONTACTS_TEL = #sellContactsTel#
+           and SELL_CONTACTS_TEL = #{sellContactsTel}
         </if>
         <if test="updateTime != null">
-           and UPDATE_TIME = #updateTime#
+           and UPDATE_TIME = #{updateTime}
         </if>
         <if test="remark != null">
-           and REMARK = #remark#
+           and REMARK = #{remark}
         </if>
         <if test="delFlag != null">
-           and DEL_FLAG = #delFlag#
+           and DEL_FLAG = #{delFlag}
         </if>
         <if test="buyContactsName != null">
-           and BUY_CONTACTS_NAME = #buyContactsName#
+           and BUY_CONTACTS_NAME = #{buyContactsName}
         </if>
         <if test="sellCompanyName != null">
-           and SELL_COMPANY_NAME = #sellCompanyName#
+           and SELL_COMPANY_NAME = #{sellCompanyName}
         </if>
         <if test="createTime != null">
-           and CREATE_TIME = #createTime#
+           and CREATE_TIME = #{createTime}
         </if>
         <if test="contractName != null">
-           and CONTRACT_NAME = #contractName#
+           and CONTRACT_NAME = #{contractName}
         </if>
         <if test="id != null">
-           and ID = #id#
+           and ID = #{id}
         </if>
         <if test="buyCompanyName != null">
-           and BUY_COMPANY_NAME = #buyCompanyName#
+           and BUY_COMPANY_NAME = #{buyCompanyName}
         </if>
         <if test="contractCode != null">
-           and CONTRACT_CODE = #contractCode#
+           and CONTRACT_CODE = #{contractCode}
         </if>
         <if test="sellContactsName != null">
-           and SELL_CONTACTS_NAME = #sellContactsName#
+           and SELL_CONTACTS_NAME = #{sellContactsName}
         </if>
     </select>
 </mapper>

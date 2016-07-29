@@ -16,13 +16,13 @@ public class PurchaseProduct  implements java.io.Serializable {
     private String productSpecifications; //规格
     private java.util.Date updateTime; //更新时间
     private String remark; //备注
-    private Double delFlag; //删除标识。0：非删除；1：删除
+    private Integer delFlag; //删除标识。0：非删除；1：删除
     private String productName; //商品名称
     private java.util.Date totalAmount; //总金额
     private String unit; //单位
     private String price; //单价
-    private Double contractId; //合同主键
-    private Double id; //主键ID，自动生成
+    private Integer contractId; //合同主键
+    private Integer id; //主键ID，自动生成
     private String perValue; //1单位数量
 
     public String getProductModel (){
@@ -67,11 +67,11 @@ public class PurchaseProduct  implements java.io.Serializable {
     public void setRemark (String remark){
         this.remark = remark;
     }
-    public Double getDelFlag (){
+    public Integer getDelFlag (){
         return delFlag;
     }
     
-    public void setDelFlag (Double delFlag){
+    public void setDelFlag (Integer delFlag){
         this.delFlag = delFlag;
     }
     public String getProductName (){
@@ -102,18 +102,18 @@ public class PurchaseProduct  implements java.io.Serializable {
     public void setPrice (String price){
         this.price = price;
     }
-    public Double getContractId (){
+    public Integer getContractId (){
         return contractId;
     }
     
-    public void setContractId (Double contractId){
+    public void setContractId (Integer contractId){
         this.contractId = contractId;
     }
-    public Double getId (){
+    public Integer getId (){
         return id;
     }
     
-    public void setId (Double id){
+    public void setId (Integer id){
         this.id = id;
     }
     public String getPerValue (){

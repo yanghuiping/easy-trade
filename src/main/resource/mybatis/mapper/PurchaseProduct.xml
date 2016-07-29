@@ -9,13 +9,13 @@
         <result column="PRODUCT_SPECIFICATIONS" property="productSpecifications" jdbcType="VARCHAR"/>
         <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP"/>
         <result column="REMARK" property="remark" jdbcType="VARCHAR"/>
-        <result column="DEL_FLAG" property="delFlag" jdbcType="DECIMAL"/>
+        <result column="DEL_FLAG" property="delFlag" jdbcType="INTEGER"/>
         <result column="PRODUCT_NAME" property="productName" jdbcType="VARCHAR"/>
         <result column="TOTAL_AMOUNT" property="totalAmount" jdbcType="TIMESTAMP"/>
         <result column="UNIT" property="unit" jdbcType="VARCHAR"/>
         <result column="PRICE" property="price" jdbcType="VARCHAR"/>
-        <result column="CONTRACT_ID" property="contractId" jdbcType="DECIMAL"/>
-        <result column="ID" property="id" jdbcType="DECIMAL"/>
+        <result column="CONTRACT_ID" property="contractId" jdbcType="INTEGER"/>
+        <result column="ID" property="id" jdbcType="INTEGER"/>
         <result column="PER_VALUE" property="perValue" jdbcType="VARCHAR"/>
     </resultMap>
 
@@ -28,67 +28,67 @@
         INSERT INTO PURCHASE_PRODUCT(
 			PRODUCT_MODEL,EFFECTIVE_TIME,NUM,PRODUCT_SPECIFICATIONS,UPDATE_TIME,
 			REMARK,DEL_FLAG,PRODUCT_NAME,TOTAL_AMOUNT,UNIT,
-			PRICE,CONTRACT_ID,ID,PER_VALUE
+			PRICE,CONTRACT_ID,PER_VALUE
         )
         VALUES(
-            #productModel#,#effectiveTime#,#num#,#productSpecifications#,#updateTime#,
-			#remark#,#delFlag#,#productName#,#totalAmount#,#unit#,
-			#price#,#contractId#,#id#,#perValue#
+            #{productModel},#{effectiveTime},#{num},#{productSpecifications},#{updateTime},
+			#{remark},#{delFlag},#{productName},#{totalAmount},#{unit},
+			#{price},#{contractId},#{perValue}
 		)
     </insert>
 
     <update id="update" parameterType="PurchaseProduct">
         UPDATE PURCHASE_PRODUCT SET
         <if test="id != null">
-            ID = #id#
+            ID = #{id}
         </if>
         <if test="productModel != null">
-            ,PRODUCT_MODEL = #productModel#
+            ,PRODUCT_MODEL = #{productModel}
         </if>
         <if test="effectiveTime != null">
-            ,EFFECTIVE_TIME = #effectiveTime#
+            ,EFFECTIVE_TIME = #{effectiveTime}
         </if>
         <if test="num != null">
-            ,NUM = #num#
+            ,NUM = #{num}
         </if>
         <if test="productSpecifications != null">
-            ,PRODUCT_SPECIFICATIONS = #productSpecifications#
+            ,PRODUCT_SPECIFICATIONS = #{productSpecifications}
         </if>
         <if test="updateTime != null">
-            ,UPDATE_TIME = #updateTime#
+            ,UPDATE_TIME = #{updateTime}
         </if>
         <if test="remark != null">
-            ,REMARK = #remark#
+            ,REMARK = #{remark}
         </if>
         <if test="delFlag != null">
-            ,DEL_FLAG = #delFlag#
+            ,DEL_FLAG = #{delFlag}
         </if>
         <if test="productName != null">
-            ,PRODUCT_NAME = #productName#
+            ,PRODUCT_NAME = #{productName}
         </if>
         <if test="totalAmount != null">
-            ,TOTAL_AMOUNT = #totalAmount#
+            ,TOTAL_AMOUNT = #{totalAmount}
         </if>
         <if test="unit != null">
-            ,UNIT = #unit#
+            ,UNIT = #{unit}
         </if>
         <if test="price != null">
-            ,PRICE = #price#
+            ,PRICE = #{price}
         </if>
         <if test="contractId != null">
-            ,CONTRACT_ID = #contractId#
+            ,CONTRACT_ID = #{contractId}
         </if>
         <if test="perValue != null">
-            ,PER_VALUE = #perValue#
+            ,PER_VALUE = #{perValue}
         </if>
 		WHERE
-            ID = #id# 
+            ID = #{id} 
     </update>
     
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
         DELETE FROM PURCHASE_PRODUCT 
 		WHERE
-            ID = #id# 
+            ID = #{id} 
     </delete>
 
     <select id="findById" resultMap="purchaseProduct"
@@ -99,7 +99,7 @@
 			PRICE,CONTRACT_ID,ID,PER_VALUE
         FROM PURCHASE_PRODUCT
         WHERE 
-            ID = #id# 
+            ID = #{id} 
     </select>
     
     <select id="findBySelective" resultMap="purchaseProduct">
@@ -109,92 +109,92 @@
 			PRICE,CONTRACT_ID,ID,PER_VALUE
         FROM PURCHASE_PRODUCT WHERE 1 = 1
         <if test="productModel != null">
-           and PRODUCT_MODEL = #productModel#
+           and PRODUCT_MODEL = #{productModel}
         </if>
         <if test="effectiveTime != null">
-           and EFFECTIVE_TIME = #effectiveTime#
+           and EFFECTIVE_TIME = #{effectiveTime}
         </if>
         <if test="num != null">
-           and NUM = #num#
+           and NUM = #{num}
         </if>
         <if test="productSpecifications != null">
-           and PRODUCT_SPECIFICATIONS = #productSpecifications#
+           and PRODUCT_SPECIFICATIONS = #{productSpecifications}
         </if>
         <if test="updateTime != null">
-           and UPDATE_TIME = #updateTime#
+           and UPDATE_TIME = #{updateTime}
         </if>
         <if test="remark != null">
-           and REMARK = #remark#
+           and REMARK = #{remark}
         </if>
         <if test="delFlag != null">
-           and DEL_FLAG = #delFlag#
+           and DEL_FLAG = #{delFlag}
         </if>
         <if test="productName != null">
-           and PRODUCT_NAME = #productName#
+           and PRODUCT_NAME = #{productName}
         </if>
         <if test="totalAmount != null">
-           and TOTAL_AMOUNT = #totalAmount#
+           and TOTAL_AMOUNT = #{totalAmount}
         </if>
         <if test="unit != null">
-           and UNIT = #unit#
+           and UNIT = #{unit}
         </if>
         <if test="price != null">
-           and PRICE = #price#
+           and PRICE = #{price}
         </if>
         <if test="contractId != null">
-           and CONTRACT_ID = #contractId#
+           and CONTRACT_ID = #{contractId}
         </if>
         <if test="id != null">
-           and ID = #id#
+           and ID = #{id}
         </if>
         <if test="perValue != null">
-           and PER_VALUE = #perValue#
+           and PER_VALUE = #{perValue}
         </if>
     </select>
 
     <select id="findBySelective_COUNT"  resultType="java.lang.Integer">
         SELECT count(*) FROM PURCHASE_PRODUCT WHERE 1 = 1
         <if test="productModel != null">
-           and PRODUCT_MODEL = #productModel#
+           and PRODUCT_MODEL = #{productModel}
         </if>
         <if test="effectiveTime != null">
-           and EFFECTIVE_TIME = #effectiveTime#
+           and EFFECTIVE_TIME = #{effectiveTime}
         </if>
         <if test="num != null">
-           and NUM = #num#
+           and NUM = #{num}
         </if>
         <if test="productSpecifications != null">
-           and PRODUCT_SPECIFICATIONS = #productSpecifications#
+           and PRODUCT_SPECIFICATIONS = #{productSpecifications}
         </if>
         <if test="updateTime != null">
-           and UPDATE_TIME = #updateTime#
+           and UPDATE_TIME = #{updateTime}
         </if>
         <if test="remark != null">
-           and REMARK = #remark#
+           and REMARK = #{remark}
         </if>
         <if test="delFlag != null">
-           and DEL_FLAG = #delFlag#
+           and DEL_FLAG = #{delFlag}
         </if>
         <if test="productName != null">
-           and PRODUCT_NAME = #productName#
+           and PRODUCT_NAME = #{productName}
         </if>
         <if test="totalAmount != null">
-           and TOTAL_AMOUNT = #totalAmount#
+           and TOTAL_AMOUNT = #{totalAmount}
         </if>
         <if test="unit != null">
-           and UNIT = #unit#
+           and UNIT = #{unit}
         </if>
         <if test="price != null">
-           and PRICE = #price#
+           and PRICE = #{price}
         </if>
         <if test="contractId != null">
-           and CONTRACT_ID = #contractId#
+           and CONTRACT_ID = #{contractId}
         </if>
         <if test="id != null">
-           and ID = #id#
+           and ID = #{id}
         </if>
         <if test="perValue != null">
-           and PER_VALUE = #perValue#
+           and PER_VALUE = #{perValue}
         </if>
     </select>
 </mapper>
