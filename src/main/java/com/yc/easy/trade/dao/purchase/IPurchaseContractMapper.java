@@ -2,9 +2,10 @@ package com.yc.easy.trade.dao.purchase;
 
 import java.util.List;
 
+import com.yc.easy.trade.dao.base.IBasePageMapper;
 import com.yc.easy.trade.domain.purchase.PurchaseContract;
 
-public interface IPurchaseContractMapper {
+public interface IPurchaseContractMapper extends IBasePageMapper{
 	/**
 	 * 查询
 	 * @param purchaseContract

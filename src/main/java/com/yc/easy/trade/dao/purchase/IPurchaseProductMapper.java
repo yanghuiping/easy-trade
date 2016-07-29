@@ -1,5 +1,7 @@
 package com.yc.easy.trade.dao.purchase;
 
-public interface IPurchaseProductMapper {
+import com.yc.easy.trade.dao.base.IBasePageMapper;
+
+public interface IPurchaseProductMapper extends IBasePageMapper{
 
 }

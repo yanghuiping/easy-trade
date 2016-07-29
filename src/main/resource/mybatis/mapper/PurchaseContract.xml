@@ -152,7 +152,58 @@
         </if>
     </select>
 
-    <select id="findBySelective_COUNT"  resultType="java.lang.Integer">
+	<select id="getPage" resultMap="purchaseContract" parameterType="Map">
+        SELECT 
+			BUY_CONTACTS_TEL,EFFECTIVE_TIME,SELL_CONTACTS_TEL,UPDATE_TIME,REMARK,
+			DEL_FLAG,BUY_CONTACTS_NAME,SELL_COMPANY_NAME,CREATE_TIME,CONTRACT_NAME,
+			ID,BUY_COMPANY_NAME,CONTRACT_CODE,SELL_CONTACTS_NAME
+        FROM PURCHASE_CONTRACT WHERE 1 = 1
+        <if test="buyContactsTel != null">
+           and BUY_CONTACTS_TEL = #{buyContactsTel}
+        </if>
+        <if test="effectiveTime != null">
+           and EFFECTIVE_TIME = #{effectiveTime}
+        </if>
+        <if test="sellContactsTel != null">
+           and SELL_CONTACTS_TEL = #{sellContactsTel}
+        </if>
+        <if test="updateTime != null">
+           and UPDATE_TIME = #{updateTime}
+        </if>
+        <if test="remark != null">
+           and REMARK = #{remark}
+        </if>
+        <if test="delFlag != null">
+           and DEL_FLAG = #{delFlag}
+        </if>
+        <if test="buyContactsName != null">
+           and BUY_CONTACTS_NAME = #{buyContactsName}
+        </if>
+        <if test="sellCompanyName != null">
+           and SELL_COMPANY_NAME = #{sellCompanyName}
+        </if>
+        <if test="createTime != null">
+           and CREATE_TIME = #{createTime}
+        </if>
+        <if test="contractName != null">
+           and CONTRACT_NAME = #{contractName}
+        </if>
+        <if test="id != null">
+           and ID = #{id}
+        </if>
+        <if test="buyCompanyName != null">
+           and BUY_COMPANY_NAME = #{buyCompanyName}
+        </if>
+        <if test="contractCode != null">
+           and CONTRACT_CODE = #{contractCode}
+        </if>
+        <if test="sellContactsName != null">
+           and SELL_CONTACTS_NAME = #{sellContactsName}
+        </if>
+        limit #{startIndex} , #{endIndex}
+    </select>
+
+    <select id="getPageCount" parameterType="Map" resultType="Long">
         SELECT count(*) FROM PURCHASE_CONTRACT WHERE 1 = 1
         <if test="buyContactsTel != null">
            and BUY_CONTACTS_TEL = #{buyContactsTel}

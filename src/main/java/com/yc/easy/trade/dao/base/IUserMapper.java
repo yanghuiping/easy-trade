@@ -1,4 +1,4 @@
-package com.yc.easy.trade.dao.demo;
+package com.yc.easy.trade.dao.base;
 
 import com.yc.easy.trade.domain.demo.UserPO;
 
