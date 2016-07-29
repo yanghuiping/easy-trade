@@ -20,8 +20,15 @@ public class PurchaseContractAction extends BaseAction {
 	@Autowired
 	private PurchaseContractService purchaseContractService;
 	
+	/**
+	 * 分页查询
+	 * @param purchaseContract
+	 * @param pageNo
+	 * @param pageSize
+	 * @return
+	 */
 	@RequestMapping(value="/purchaseCountractIndex.htm")
-	public ModelAndView queryUserPages(@Param("purchaseContract")PurchaseContract purchaseContract,@Param("pageNo") String pageNo,@Param("pageSize") String pageSize){
+	public ModelAndView purchaseContractList(@Param("purchaseContract")PurchaseContract purchaseContract,@Param("pageNo") String pageNo,@Param("pageSize") String pageSize){
 		ModelAndView modelAndView = new ModelAndView("purchase/purchaseContractIndex");
 		Map<String,Object> parameterMap = new HashMap<String,Object>();
 		int pageNoInt = 1;
@@ -35,10 +42,35 @@ public class PurchaseContractAction extends BaseAction {
 			pageSizeInt = Integer.valueOf(pageSize);
 		}
 		if(purchaseContract != null){
-			
+			parameterMap.put("contractCode", purchaseContract.getContractCode());//和页面上的一致
 		}
 		Page resultPage = purchaseContractService.queryPurchaseContractPaged(parameterMap, pageNoInt, pageSizeInt);//page.getPageSize()
 		modelAndView.addObject("page", resultPage);
+		return modelAndView;
+	}
+	
+	/**
+	 * 详细查询
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value="/purchaseContractDetail.htm")
+	public ModelAndView purchaseContractDetail(@Param("id") Integer id){
+		ModelAndView modelAndView = new ModelAndView();
+		if(id != null){
+			
+		}
+		return modelAndView;
+	}
+	
+	/**
+	 * 新增
+	 * @return
+	 */
+	@RequestMapping(value="/addPurchaseContract.htm")
+	public ModelAndView addPurchaseContract(){
+		ModelAndView modelAndView = new ModelAndView();
+		
 		return modelAndView;
 	}
 }
