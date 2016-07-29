@@ -3,7 +3,7 @@ package com.yc.easy.trade.test.demo;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.yc.easy.trade.service.demo.UserService;
+import com.yc.easy.trade.service.base.UserService;
 
 
 /** 

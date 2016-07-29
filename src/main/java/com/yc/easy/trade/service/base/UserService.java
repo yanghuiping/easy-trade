@@ -1,4 +1,4 @@
-package com.yc.easy.trade.service.demo;
+package com.yc.easy.trade.service.base;
 
 import java.util.List;
 import java.util.Map;
@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yc.easy.trade.common.web.support.Page;
-import com.yc.easy.trade.dao.demo.IUserMapper;
+import com.yc.easy.trade.dao.base.IUserMapper;
 import com.yc.easy.trade.domain.demo.UserPO;
 
 

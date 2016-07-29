@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.yc.easy.trade.common.base.BaseAction;
 import com.yc.easy.trade.common.web.support.Page;
 import com.yc.easy.trade.domain.demo.UserPO;
-import com.yc.easy.trade.service.demo.UserService;
+import com.yc.easy.trade.service.base.UserService;
 
 
 /** 

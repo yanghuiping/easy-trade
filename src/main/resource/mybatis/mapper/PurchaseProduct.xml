@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc.easy.trade.dao.purchase.IPurchaseProductMapper">
+    <resultMap id="purchaseProduct" type="com.yc.easy.trade.domain.purchase.PurchaseProduct">
+        <result column="PRODUCT_MODEL" property="productModel" jdbcType="VARCHAR"/>
+        <result column="NUM" property="num" jdbcType="DECIMAL"/>
+        <result column="PRODUCT_SPECIFICATIONS" property="productSpecifications" jdbcType="VARCHAR"/>
+        <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="REMARK" property="remark" jdbcType="VARCHAR"/>
+        <result column="DEL_FLAG" property="delFlag" jdbcType="DECIMAL"/>
+        <result column="PRODUCT_NAME" property="productName" jdbcType="VARCHAR"/>
+        <result column="TOTAL_AMOUNT" property="totalAmount" jdbcType="DECIMAL"/>
+        <result column="UNIT" property="unit" jdbcType="VARCHAR"/>
+        <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="PRICE" property="price" jdbcType="DECIMAL"/>
+        <result column="CONTRACT_ID" property="contractId" jdbcType="DECIMAL"/>
+        <result column="ID" property="id" jdbcType="DECIMAL"/>
+        <result column="PER_VALUE" property="perValue" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Column_List">
+		PRODUCT_MODEL,NUM,PRODUCT_SPECIFICATIONS,UPDATE_TIME,REMARK,
+		DEL_FLAG,PRODUCT_NAME,TOTAL_AMOUNT,UNIT,CREATE_TIME,
+		PRICE,CONTRACT_ID,ID,PER_VALUE
+    </sql>
+    <insert id="create" parameterType="PurchaseProduct">
+        INSERT INTO PURCHASE_PRODUCT(
+			PRODUCT_MODEL,NUM,PRODUCT_SPECIFICATIONS,UPDATE_TIME,REMARK,
+			DEL_FLAG,PRODUCT_NAME,TOTAL_AMOUNT,UNIT,CREATE_TIME,
+			PRICE,CONTRACT_ID,ID,PER_VALUE
+        )
+        VALUES(
+            #{productModel},#{num},#{productSpecifications},#{updateTime},#{remark},
+			#{delFlag},#{productName},#{totalAmount},#{unit},#{createTime},
+			#{price},#{contractId},#{id},#{perValue}
+		)
+        <selectKey resultType="int" keyProperty="id" order="AFTER">
+			SELECT LAST_INSERT_ID() AS VALUE
+		</selectKey>
+    </insert>
+
+    <update id="update" parameterType="PurchaseProduct">
+        UPDATE PURCHASE_PRODUCT SET
+        <if test="id != null">
+            ID = #{id}
+        </if>
+        <if test="productModel != null">
+            ,PRODUCT_MODEL = #{productModel}
+        </if>
+        <if test="num != null">
+            ,NUM = #{num}
+        </if>
+        <if test="productSpecifications != null">
+            ,PRODUCT_SPECIFICATIONS = #{productSpecifications}
+        </if>
+        <if test="updateTime != null">
+            ,UPDATE_TIME = #{updateTime}
+        </if>
+        <if test="remark != null">
+            ,REMARK = #{remark}
+        </if>
+        <if test="delFlag != null">
+            ,DEL_FLAG = #{delFlag}
+        </if>
+        <if test="productName != null">
+            ,PRODUCT_NAME = #{productName}
+        </if>
+        <if test="totalAmount != null">
+            ,TOTAL_AMOUNT = #{totalAmount}
+        </if>
+        <if test="unit != null">
+            ,UNIT = #{unit}
+        </if>
+        <if test="createTime != null">
+            ,CREATE_TIME = #{createTime}
+        </if>
+        <if test="price != null">
+            ,PRICE = #{price}
+        </if>
+        <if test="contractId != null">
+            ,CONTRACT_ID = #{contractId}
+        </if>
+        <if test="perValue != null">
+            ,PER_VALUE = #{perValue}
+        </if>
+		WHERE
+            ID = #{id} 
+    </update>
+    
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        DELETE FROM PURCHASE_PRODUCT 
+		WHERE
+            ID = #{id} 
+    </delete>
+
+    <select id="findById" resultMap="purchaseProduct"
+        parameterType="java.lang.Long">
+        SELECT 
+			PRODUCT_MODEL,NUM,PRODUCT_SPECIFICATIONS,UPDATE_TIME,REMARK,
+			DEL_FLAG,PRODUCT_NAME,TOTAL_AMOUNT,UNIT,CREATE_TIME,
+			PRICE,CONTRACT_ID,ID,PER_VALUE
+        FROM PURCHASE_PRODUCT
+        WHERE 
+            ID = #{id} 
+    </select>
+    
+    <select id="findBySelective" resultMap="purchaseProduct">
+        SELECT 
+			PRODUCT_MODEL,NUM,PRODUCT_SPECIFICATIONS,UPDATE_TIME,REMARK,
+			DEL_FLAG,PRODUCT_NAME,TOTAL_AMOUNT,UNIT,CREATE_TIME,
+			PRICE,CONTRACT_ID,ID,PER_VALUE
+        FROM PURCHASE_PRODUCT WHERE 1 = 1
+        <if test="productModel != null">
+           and PRODUCT_MODEL = #{productModel}
+        </if>
+        <if test="num != null">
+           and NUM = #{num}
+        </if>
+        <if test="productSpecifications != null">
+           and PRODUCT_SPECIFICATIONS = #{productSpecifications}
+        </if>
+        <if test="updateTime != null">
+           and UPDATE_TIME = #{updateTime}
+        </if>
+        <if test="remark != null">
+           and REMARK = #{remark}
+        </if>
+        <if test="delFlag != null">
+           and DEL_FLAG = #{delFlag}
+        </if>
+        <if test="productName != null">
+           and PRODUCT_NAME = #{productName}
+        </if>
+        <if test="totalAmount != null">
+           and TOTAL_AMOUNT = #{totalAmount}
+        </if>
+        <if test="unit != null">
+           and UNIT = #{unit}
+        </if>
+        <if test="createTime != null">
+           and CREATE_TIME = #{createTime}
+        </if>
+        <if test="price != null">
+           and PRICE = #{price}
+        </if>
+        <if test="contractId != null">
+           and CONTRACT_ID = #{contractId}
+        </if>
+        <if test="id != null">
+           and ID = #{id}
+        </if>
+        <if test="perValue != null">
+           and PER_VALUE = #{perValue}
+        </if>
+    </select>
+
+
+	<select id="getPages" resultMap="purchaseProduct" parameterType="Map">
+         SELECT 
+			PRODUCT_MODEL,NUM,PRODUCT_SPECIFICATIONS,UPDATE_TIME,REMARK,
+			DEL_FLAG,PRODUCT_NAME,TOTAL_AMOUNT,UNIT,CREATE_TIME,
+			PRICE,CONTRACT_ID,ID,PER_VALUE
+        FROM PURCHASE_PRODUCT WHERE 1 = 1
+        <if test="productModel != null">
+           and PRODUCT_MODEL = #{productModel}
+        </if>
+        <if test="num != null">
+           and NUM = #{num}
+        </if>
+        <if test="productSpecifications != null">
+           and PRODUCT_SPECIFICATIONS = #{productSpecifications}
+        </if>
+        <if test="updateTime != null">
+           and UPDATE_TIME = #{updateTime}
+        </if>
+        <if test="remark != null">
+           and REMARK = #{remark}
+        </if>
+        <if test="delFlag != null">
+           and DEL_FLAG = #{delFlag}
+        </if>
+        <if test="productName != null">
+           and PRODUCT_NAME = #{productName}
+        </if>
+        <if test="totalAmount != null">
+           and TOTAL_AMOUNT = #{totalAmount}
+        </if>
+        <if test="unit != null">
+           and UNIT = #{unit}
+        </if>
+        <if test="createTime != null">
+           and CREATE_TIME = #{createTime}
+        </if>
+        <if test="price != null">
+           and PRICE = #{price}
+        </if>
+        <if test="contractId != null">
+           and CONTRACT_ID = #{contractId}
+        </if>
+        <if test="id != null">
+           and ID = #{id}
+        </if>
+        <if test="perValue != null">
+           and PER_VALUE = #{perValue}
+        </if>
+        limit #{startIndex} , #{endIndex}
+    </select>
+
+   <select id="getPagesCount" parameterType="Map" resultType="Long">
+        SELECT count(*) FROM PURCHASE_PRODUCT WHERE 1 = 1
+        <if test="productModel != null">
+           and PRODUCT_MODEL = #{productModel}
+        </if>
+        <if test="num != null">
+           and NUM = #{num}
+        </if>
+        <if test="productSpecifications != null">
+           and PRODUCT_SPECIFICATIONS = #{productSpecifications}
+        </if>
+        <if test="updateTime != null">
+           and UPDATE_TIME = #{updateTime}
+        </if>
+        <if test="remark != null">
+           and REMARK = #{remark}
+        </if>
+        <if test="delFlag != null">
+           and DEL_FLAG = #{delFlag}
+        </if>
+        <if test="productName != null">
+           and PRODUCT_NAME = #{productName}
+        </if>
+        <if test="totalAmount != null">
+           and TOTAL_AMOUNT = #{totalAmount}
+        </if>
+        <if test="unit != null">
+           and UNIT = #{unit}
+        </if>
+        <if test="createTime != null">
+           and CREATE_TIME = #{createTime}
+        </if>
+        <if test="price != null">
+           and PRICE = #{price}
+        </if>
+        <if test="contractId != null">
+           and CONTRACT_ID = #{contractId}
+        </if>
+        <if test="id != null">
+           and ID = #{id}
+        </if>
+        <if test="perValue != null">
+           and PER_VALUE = #{perValue}
+        </if>
+    </select>
+</mapper>

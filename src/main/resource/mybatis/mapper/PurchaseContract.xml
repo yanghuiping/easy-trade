@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc.easy.trade.dao.purchase.IPurchaseContractMapper">
+    <resultMap id="purchaseContract" type="com.yc.easy.trade.domain.purchase.PurchaseContract">
+        <result column="BUY_CONTACTS_TEL" property="buyContactsTel" jdbcType="VARCHAR"/>
+        <result column="EFFECTIVE_TIME" property="effectiveTime" jdbcType="TIMESTAMP"/>
+        <result column="SELL_CONTACTS_TEL" property="sellContactsTel" jdbcType="VARCHAR"/>
+        <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="REMARK" property="remark" jdbcType="VARCHAR"/>
+        <result column="DEL_FLAG" property="delFlag" jdbcType="INTEGER"/>
+        <result column="BUY_CONTACTS_NAME" property="buyContactsName" jdbcType="VARCHAR"/>
+        <result column="SELL_COMPANY_NAME" property="sellCompanyName" jdbcType="VARCHAR"/>
+        <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="CONTRACT_NAME" property="contractName" jdbcType="VARCHAR"/>
+        <result column="ID" property="id" jdbcType="INTEGER"/>
+        <result column="BUY_COMPANY_NAME" property="buyCompanyName" jdbcType="VARCHAR"/>
+        <result column="CONTRACT_CODE" property="contractCode" jdbcType="VARCHAR"/>
+        <result column="SELL_CONTACTS_NAME" property="sellContactsName" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Column_List">
+		BUY_CONTACTS_TEL,EFFECTIVE_TIME,SELL_CONTACTS_TEL,UPDATE_TIME,REMARK,
+		DEL_FLAG,BUY_CONTACTS_NAME,SELL_COMPANY_NAME,CREATE_TIME,CONTRACT_NAME,
+		ID,BUY_COMPANY_NAME,CONTRACT_CODE,SELL_CONTACTS_NAME
+    </sql>
+    <insert id="create" parameterType="PurchaseContract">
+        INSERT INTO PURCHASE_CONTRACT(
+			BUY_CONTACTS_TEL,EFFECTIVE_TIME,SELL_CONTACTS_TEL,UPDATE_TIME,REMARK,
+			DEL_FLAG,BUY_CONTACTS_NAME,SELL_COMPANY_NAME,CREATE_TIME,CONTRACT_NAME,
+			BUY_COMPANY_NAME,CONTRACT_CODE,SELL_CONTACTS_NAME
+        )
+        VALUES(
+            #{buyContactsTel},#{effectiveTime},#{sellContactsTel},#{updateTime},#{remark},
+			#{delFlag},#{buyContactsName},#{sellCompanyName},#{createTime},#{contractName},
+			#{buyCompanyName},#{contractCode},#{sellContactsName}
+		)
+    </insert>
+
+    <update id="update" parameterType="PurchaseContract">
+        UPDATE PURCHASE_CONTRACT SET
+        <if test="id != null">
+            ID = #{id}
+        </if>
+        <if test="buyContactsTel != null">
+            ,BUY_CONTACTS_TEL = #{buyContactsTel}
+        </if>
+        <if test="effectiveTime != null">
+            ,EFFECTIVE_TIME = #{effectiveTime}
+        </if>
+        <if test="sellContactsTel != null">
+            ,SELL_CONTACTS_TEL = #{sellContactsTel}
+        </if>
+        <if test="updateTime != null">
+            ,UPDATE_TIME = #{updateTime}
+        </if>
+        <if test="remark != null">
+            ,REMARK = #{remark}
+        </if>
+        <if test="delFlag != null">
+            ,DEL_FLAG = #{delFlag}
+        </if>
+        <if test="buyContactsName != null">
+            ,BUY_CONTACTS_NAME = #{buyContactsName}
+        </if>
+        <if test="sellCompanyName != null">
+            ,SELL_COMPANY_NAME = #{sellCompanyName}
+        </if>
+        <if test="createTime != null">
+            ,CREATE_TIME = #{createTime}
+        </if>
+        <if test="contractName != null">
+            ,CONTRACT_NAME = #{contractName}
+        </if>
+        <if test="buyCompanyName != null">
+            ,BUY_COMPANY_NAME = #{buyCompanyName}
+        </if>
+        <if test="contractCode != null">
+            ,CONTRACT_CODE = #{contractCode}
+        </if>
+        <if test="sellContactsName != null">
+            ,SELL_CONTACTS_NAME = #{sellContactsName}
+        </if>
+		WHERE
+            ID = #{id} 
+    </update>
+    
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        DELETE FROM PURCHASE_CONTRACT 
+		WHERE
+            ID = #{id} 
+    </delete>
+
+    <select id="findById" resultMap="purchaseContract"
+        parameterType="java.lang.Long">
+        SELECT 
+			BUY_CONTACTS_TEL,EFFECTIVE_TIME,SELL_CONTACTS_TEL,UPDATE_TIME,REMARK,
+			DEL_FLAG,BUY_CONTACTS_NAME,SELL_COMPANY_NAME,CREATE_TIME,CONTRACT_NAME,
+			ID,BUY_COMPANY_NAME,CONTRACT_CODE,SELL_CONTACTS_NAME
+        FROM PURCHASE_CONTRACT
+        WHERE 
+            ID = #{id} 
+    </select>
+    
+    <select id="findBySelective" resultMap="purchaseContract">
+        SELECT 
+			BUY_CONTACTS_TEL,EFFECTIVE_TIME,SELL_CONTACTS_TEL,UPDATE_TIME,REMARK,
+			DEL_FLAG,BUY_CONTACTS_NAME,SELL_COMPANY_NAME,CREATE_TIME,CONTRACT_NAME,
+			ID,BUY_COMPANY_NAME,CONTRACT_CODE,SELL_CONTACTS_NAME
+        FROM PURCHASE_CONTRACT WHERE 1 = 1
+        <if test="buyContactsTel != null">
+           and BUY_CONTACTS_TEL = #{buyContactsTel}
+        </if>
+        <if test="effectiveTime != null">
+           and EFFECTIVE_TIME = #{effectiveTime}
+        </if>
+        <if test="sellContactsTel != null">
+           and SELL_CONTACTS_TEL = #{sellContactsTel}
+        </if>
+        <if test="updateTime != null">
+           and UPDATE_TIME = #{updateTime}
+        </if>
+        <if test="remark != null">
+           and REMARK = #{remark}
+        </if>
+        <if test="delFlag != null">
+           and DEL_FLAG = #{delFlag}
+        </if>
+        <if test="buyContactsName != null">
+           and BUY_CONTACTS_NAME = #{buyContactsName}
+        </if>
+        <if test="sellCompanyName != null">
+           and SELL_COMPANY_NAME = #{sellCompanyName}
+        </if>
+        <if test="createTime != null">
+           and CREATE_TIME = #{createTime}
+        </if>
+        <if test="contractName != null">
+           and CONTRACT_NAME = #{contractName}
+        </if>
+        <if test="id != null">
+           and ID = #{id}
+        </if>
+        <if test="buyCompanyName != null">
+           and BUY_COMPANY_NAME = #{buyCompanyName}
+        </if>
+        <if test="contractCode != null">
+           and CONTRACT_CODE = #{contractCode}
+        </if>
+        <if test="sellContactsName != null">
+           and SELL_CONTACTS_NAME = #{sellContactsName}
+        </if>
+    </select>
+
+	<select id="getPages" resultMap="purchaseContract" parameterType="Map">
+        SELECT 
+			BUY_CONTACTS_TEL,EFFECTIVE_TIME,SELL_CONTACTS_TEL,UPDATE_TIME,REMARK,
+			DEL_FLAG,BUY_CONTACTS_NAME,SELL_COMPANY_NAME,CREATE_TIME,CONTRACT_NAME,
+			ID,BUY_COMPANY_NAME,CONTRACT_CODE,SELL_CONTACTS_NAME
+        FROM PURCHASE_CONTRACT WHERE 1 = 1
+        <if test="buyContactsTel != null">
+           and BUY_CONTACTS_TEL = #{buyContactsTel}
+        </if>
+        <if test="effectiveTime != null">
+           and EFFECTIVE_TIME = #{effectiveTime}
+        </if>
+        <if test="sellContactsTel != null">
+           and SELL_CONTACTS_TEL = #{sellContactsTel}
+        </if>
+        <if test="updateTime != null">
+           and UPDATE_TIME = #{updateTime}
+        </if>
+        <if test="remark != null">
+           and REMARK = #{remark}
+        </if>
+        <if test="delFlag != null">
+           and DEL_FLAG = #{delFlag}
+        </if>
+        <if test="buyContactsName != null">
+           and BUY_CONTACTS_NAME = #{buyContactsName}
+        </if>
+        <if test="sellCompanyName != null">
+           and SELL_COMPANY_NAME = #{sellCompanyName}
+        </if>
+        <if test="createTime != null">
+           and CREATE_TIME = #{createTime}
+        </if>
+        <if test="contractName != null">
+           and CONTRACT_NAME = #{contractName}
+        </if>
+        <if test="id != null">
+           and ID = #{id}
+        </if>
+        <if test="buyCompanyName != null">
+           and BUY_COMPANY_NAME = #{buyCompanyName}
+        </if>
+        <if test="contractCode != null">
+           and CONTRACT_CODE = #{contractCode}
+        </if>
+        <if test="sellContactsName != null">
+           and SELL_CONTACTS_NAME = #{sellContactsName}
+        </if>
+        limit #{startIndex} , #{endIndex}
+    </select>
+
+    <select id="getPagesCount" parameterType="Map" resultType="Long">
+        SELECT count(*) FROM PURCHASE_CONTRACT WHERE 1 = 1
+        <if test="buyContactsTel != null">
+           and BUY_CONTACTS_TEL = #{buyContactsTel}
+        </if>
+        <if test="effectiveTime != null">
+           and EFFECTIVE_TIME = #{effectiveTime}
+        </if>
+        <if test="sellContactsTel != null">
+           and SELL_CONTACTS_TEL = #{sellContactsTel}
+        </if>
+        <if test="updateTime != null">
+           and UPDATE_TIME = #{updateTime}
+        </if>
+        <if test="remark != null">
+           and REMARK = #{remark}
+        </if>
+        <if test="delFlag != null">
+           and DEL_FLAG = #{delFlag}
+        </if>
+        <if test="buyContactsName != null">
+           and BUY_CONTACTS_NAME = #{buyContactsName}
+        </if>
+        <if test="sellCompanyName != null">
+           and SELL_COMPANY_NAME = #{sellCompanyName}
+        </if>
+        <if test="createTime != null">
+           and CREATE_TIME = #{createTime}
+        </if>
+        <if test="contractName != null">
+           and CONTRACT_NAME = #{contractName}
+        </if>
+        <if test="id != null">
+           and ID = #{id}
+        </if>
+        <if test="buyCompanyName != null">
+           and BUY_COMPANY_NAME = #{buyCompanyName}
+        </if>
+        <if test="contractCode != null">
+           and CONTRACT_CODE = #{contractCode}
+        </if>
+        <if test="sellContactsName != null">
+           and SELL_CONTACTS_NAME = #{sellContactsName}
+        </if>
+    </select>
+</mapper>

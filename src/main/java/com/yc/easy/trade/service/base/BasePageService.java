@@ -1,4 +1,4 @@
-package com.yc.easy.trade.service.demo;
+package com.yc.easy.trade.service.base;
 
 
 
