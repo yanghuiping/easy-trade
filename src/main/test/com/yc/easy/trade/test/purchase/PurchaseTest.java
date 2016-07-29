@@ -1,22 +1,28 @@
 package com.yc.easy.trade.test.purchase;
 
-import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
 import org.junit.Test;
 
 import com.yc.easy.trade.common.base.Constants;
+import com.yc.easy.trade.common.web.support.Page;
 import com.yc.easy.trade.domain.purchase.PurchaseContract;
+import com.yc.easy.trade.domain.purchase.PurchaseProduct;
 import com.yc.easy.trade.service.purchase.PurchaseContractService;
+import com.yc.easy.trade.service.purchase.PurchaseProductService;
 import com.yc.easy.trade.test.base.BaseTest;
 
 public class PurchaseTest extends BaseTest {
 	
 	@Resource
 	private PurchaseContractService pourchaseContractService;
+	@Resource
+	private PurchaseProductService pourchaseProductService;
 	
 	@Test
 	public void create() throws Exception{
@@ -69,5 +75,31 @@ public class PurchaseTest extends BaseTest {
 		System.out.println(list.size());
 	}
 	
+	@Test
+	public void queryPage(){
+		Map<String,Object> parameterObject = new HashMap<String,Object>();
+		int pageNo = 2;
+		int pageSize = 3;
+		Page page = pourchaseContractService.queryPurchaseContractPaged(parameterObject, pageNo, pageSize);
+		List<PurchaseContract> list = (List<PurchaseContract>)page.getData();
+		for(PurchaseContract purchaseContract : list){
+			System.out.println(purchaseContract.getContractName());
+		}
+		System.out.println(list.size());
+	}
+	
+	//--------采购产品
+	@Test
+	public void createPurchaseProduct(){
+		for(int i=0;i<5;i++){
+			PurchaseProduct purchaseProduct = new PurchaseProduct();
+			purchaseProduct.setContractId(1);
+			purchaseProduct.setDelFlag(Constants.DEL_FLAG_NO);
+			purchaseProduct.setUpdateTime(new Date());
+			purchaseProduct.setCreateTime(new Date());
+			purchaseProduct.setProductName("产品_"+i);
+			pourchaseProductService.addPurchaseProduct(purchaseProduct);
+		}
+	}
 	
 }

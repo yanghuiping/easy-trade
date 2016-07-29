@@ -152,7 +152,7 @@
         </if>
     </select>
 
-	<select id="getPage" resultMap="purchaseContract" parameterType="Map">
+	<select id="getPages" resultMap="purchaseContract" parameterType="Map">
         SELECT 
 			BUY_CONTACTS_TEL,EFFECTIVE_TIME,SELL_CONTACTS_TEL,UPDATE_TIME,REMARK,
 			DEL_FLAG,BUY_CONTACTS_NAME,SELL_COMPANY_NAME,CREATE_TIME,CONTRACT_NAME,
@@ -203,7 +203,7 @@
         limit #{startIndex} , #{endIndex}
     </select>
 
-    <select id="getPageCount" parameterType="Map" resultType="Long">
+    <select id="getPagesCount" parameterType="Map" resultType="Long">
         SELECT count(*) FROM PURCHASE_CONTRACT WHERE 1 = 1
         <if test="buyContactsTel != null">
            and BUY_CONTACTS_TEL = #{buyContactsTel}

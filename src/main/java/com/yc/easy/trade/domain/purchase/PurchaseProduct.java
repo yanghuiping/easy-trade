@@ -4,6 +4,9 @@
 *
 **/
 package com.yc.easy.trade.domain.purchase;
+
+import java.math.BigDecimal;
+
 /**
 * purchase_product
 */
@@ -11,16 +14,16 @@ package com.yc.easy.trade.domain.purchase;
 public class PurchaseProduct  implements java.io.Serializable {
 
     private String productModel; //型号
-    private java.util.Date effectiveTime; //创建时间
-    private String num; //数量
+    private BigDecimal num; //数量
     private String productSpecifications; //规格
     private java.util.Date updateTime; //更新时间
     private String remark; //备注
     private Integer delFlag; //删除标识。0：非删除；1：删除
     private String productName; //商品名称
-    private java.util.Date totalAmount; //总金额
+    private BigDecimal totalAmount; //总金额
     private String unit; //单位
-    private String price; //单价
+    private java.util.Date createTime; //创建时间
+    private BigDecimal price; //单价
     private Integer contractId; //合同主键
     private Integer id; //主键ID，自动生成
     private String perValue; //1单位数量
@@ -32,18 +35,11 @@ public class PurchaseProduct  implements java.io.Serializable {
     public void setProductModel (String productModel){
         this.productModel = productModel;
     }
-    public java.util.Date getEffectiveTime (){
-        return effectiveTime;
-    }
-    
-    public void setEffectiveTime (java.util.Date effectiveTime){
-        this.effectiveTime = effectiveTime;
-    }
-    public String getNum (){
+    public BigDecimal getNum (){
         return num;
     }
     
-    public void setNum (String num){
+    public void setNum (BigDecimal num){
         this.num = num;
     }
     public String getProductSpecifications (){
@@ -81,11 +77,11 @@ public class PurchaseProduct  implements java.io.Serializable {
     public void setProductName (String productName){
         this.productName = productName;
     }
-    public java.util.Date getTotalAmount (){
+    public BigDecimal getTotalAmount (){
         return totalAmount;
     }
     
-    public void setTotalAmount (java.util.Date totalAmount){
+    public void setTotalAmount (BigDecimal totalAmount){
         this.totalAmount = totalAmount;
     }
     public String getUnit (){
@@ -95,11 +91,18 @@ public class PurchaseProduct  implements java.io.Serializable {
     public void setUnit (String unit){
         this.unit = unit;
     }
-    public String getPrice (){
+    public java.util.Date getCreateTime (){
+        return createTime;
+    }
+    
+    public void setCreateTime (java.util.Date createTime){
+        this.createTime = createTime;
+    }
+    public BigDecimal getPrice (){
         return price;
     }
     
-    public void setPrice (String price){
+    public void setPrice (BigDecimal price){
         this.price = price;
     }
     public Integer getContractId (){
