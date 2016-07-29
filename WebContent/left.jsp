@@ -91,15 +91,15 @@ function MM_swapImage() { //v3.0
 	          </tr>
 	          <tr>
 	            <td height="25"><div align="center" class="STYLE2"><a href="user/demo.htm" target="rightFrame">配置管理</a></div></td>
-	            <td><div align="center" class="STYLE2"><a href="user/demo.htm" target="rightFrame">日志管理</a></div></td>
+	            <td><div align="center" class="STYLE2"><a href="purchaseManage/purchaseCountractIndex.htm" target="rightFrame">日志管理</a></div></td>
 	            <td><div align="center" class="STYLE2"><a href="user/demo.htm" target="rightFrame">数据分析</a></div></td>
 	          </tr>
 	        </table>
         </td>
       </tr>
-      <tr>
+      <!-- <tr>
         <td style="line-height:4px; background:url(images/web/main/main_38.gif)">&nbsp;</td>
-      </tr>
+      </tr> -->
       <tr>
         <td>
         	<img src="images/web/main/left_tree.gif" />
