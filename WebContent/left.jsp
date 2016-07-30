@@ -97,13 +97,14 @@ function MM_swapImage() { //v3.0
 	        </table>
         </td>
       </tr>
-      <!-- <tr>
+      <tr>
         <td style="line-height:4px; background:url(images/web/main/main_38.gif)">&nbsp;</td>
-      </tr> -->
+      </tr> 
       <tr>
         <td>
-        	<img src="images/web/main/left_tree.gif" />
-        	<div style="margin-left: 10px;margin-top: 10px;visibility:hidden">
+        	<!-- <img src="images/web/main/left_tree.gif" /> -->
+        	<!-- <div style="margin-left: 10px;margin-top: 10px;visibility:hidden"> -->
+        	<div style="margin-left: 10px;margin-top: 10px;">
 	        	<script type="text/javascript">
 					var tree = new WebFXTree('xxx管理系统');
 					tree.setBehavior('classic');

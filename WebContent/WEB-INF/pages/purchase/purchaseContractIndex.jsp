@@ -49,32 +49,34 @@ a:active {
 
 -->
 </style>
+<script type="text/javascript" src="${ctx}/My97DatePicker/WdatePicker.js"></script>
 </head>
 <body>
 	<form name="managerForm" id="managerForm" action="demo.htm" method="post">
-		<table border="0" cellpadding="0" cellspacing="0">
-			<tr>
-				<td align="left">用户名称：</td>
-				<td align="left">
-					<input name="userName" id="userName" type="text" value="${user.userName}" style="width: 150px" />
-				</td>
-				<td align="left">开始时间：</td>
-				<td align="left">
-					<input type="text" name="startTime" id="startTime" class="Wdate" value="<fmt:formatDate pattern="yyyy-MM-dd" value="${user.startTime}" />" onClick="WdatePicker()" style="cursor: pointer" readonly/>
-				</td>
-				<td align="left">结束时间：</td>
-				<td align="left">
-					<input type="text" name="endTime" id="endTime" class="Wdate" value="<fmt:formatDate pattern="yyyy-MM-dd" value="${user.endTime}" />" onClick="WdatePicker()" style="cursor: pointer" readonly/>
-				</td>
-				<td align="left">
-					<input name="cx" type="submit" value="查询" style="cursor: pointer" />
-				</td>
-				<td align="left">
-					<input name="cz" type="reset" id="resetBtn" value="重置" style="cursor: pointer" />
-				</td>
-			</tr>
-		</table>
-	</form>
+	<table border="0" cellpadding="0" cellspacing="0" background="../images/web/tab/images/tab_05.gif">
+		<tr>
+			<td width="15" height="30"><img src="../images/web/tab/images/tab_03.gif" width="15" height="30" /></td>
+			<td align="left" class="STYLE1">用户名称：</td>
+			<td align="left" class="STYLE1">
+				<input name="userName" id="userName" type="text" value="${user.userName}" style="width: 150px" />
+			</td>
+			<td align="left" class="STYLE1">开始时间：</td>
+			<td align="left" class="STYLE1">
+				<input type="text" name="startTime" id="startTime" class="Wdate" value="<fmt:formatDate pattern="yyyy-MM-dd" value="${user.startTime}" />" onClick="WdatePicker()" style="cursor: pointer" readonly/>
+			</td>
+			<td align="left" class="STYLE1">结束时间：</td>
+			<td align="left" class="STYLE1">
+				<input type="text" name="endTime" id="endTime" class="Wdate" value="<fmt:formatDate pattern="yyyy-MM-dd" value="${user.endTime}" />" onClick="WdatePicker()" style="cursor: pointer" readonly/>
+			</td>
+			<td align="left" class="STYLE1">
+				<input name="cx" type="submit" value="查询" style="cursor: pointer" />
+			</td>
+			<td align="left" class="STYLE1">
+				<input name="cz" type="reset" id="resetBtn" value="重置" style="cursor: pointer" />
+			</td>
+		</tr>
+	</table>
+</form>
 	<form name="managerhiddenForm" id="managerhiddenForm" action="demo.htm"
 		method="post">
 		<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -121,13 +123,13 @@ a:active {
 		  	<td>
 				<table width="99%" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#c0de98" onmouseover="changeto()"  onmouseout="changeback()">
 					<tr>
-						<td width="15%" height="18" background="../images/web/tab/images/tab_14.gif" class="STYLE1"><div align="center" class="STYLE2 STYLE1">序号</div></td>
-						<td width="20%" height="18" background="../images/web/tab/images/tab_14.gif" class="STYLE1"><div align="center" class="STYLE2 STYLE1">合同编号</div></td>
+						<td width="5%" height="18" background="../images/web/tab/images/tab_14.gif" class="STYLE1"><div align="center" class="STYLE2 STYLE1">序号</div></td>
+						<td width="15%" height="18" background="../images/web/tab/images/tab_14.gif" class="STYLE1"><div align="center" class="STYLE2 STYLE1">合同编号</div></td>
 						<td width="20%" height="18" background="../images/web/tab/images/tab_14.gif" class="STYLE1"><div align="center" class="STYLE2 STYLE1">合同名称</div></td>
-						<td width="20%" height="18" background="../images/web/tab/images/tab_14.gif" class="STYLE1"><div align="center" class="STYLE2 STYLE1">签订时间</div></td>
-						<td width="25%" height="18" background="../images/web/tab/images/tab_14.gif" class="STYLE1"><div align="center" class="STYLE2 STYLE1">添加时间</div></td>
-						<td width="25%" height="18" background="../images/web/tab/images/tab_14.gif" class="STYLE1"><div align="center" class="STYLE2 STYLE1">供方公司</div></td>
-						<td width="25%" height="18" background="../images/web/tab/images/tab_14.gif" class="STYLE1"><div align="center" class="STYLE2 STYLE1">供方联系人</div></td>
+						<td width="15%" height="18" background="../images/web/tab/images/tab_14.gif" class="STYLE1"><div align="center" class="STYLE2 STYLE1">签订时间</div></td>
+						<td width="15%" height="18" background="../images/web/tab/images/tab_14.gif" class="STYLE1"><div align="center" class="STYLE2 STYLE1">添加时间</div></td>
+						<td width="15%" height="18" background="../images/web/tab/images/tab_14.gif" class="STYLE1"><div align="center" class="STYLE2 STYLE1">供方公司</div></td>
+						<td width="15%" height="18" background="../images/web/tab/images/tab_14.gif" class="STYLE1"><div align="center" class="STYLE2 STYLE1">供方联系人</div></td>
 					</tr>
 					<c:forEach items="${page.data}" var="purchaseContract" varStatus="serial">
 						<tr id="${serial.index+1 }" align="center"
@@ -148,7 +150,7 @@ a:active {
 						</tr>
 					</c:if>
 					<tr>
-						<td height="18" bgcolor="#FFFFFF" class="STYLE2" align="right" colspan="5">
+						<td height="18" bgcolor="#FFFFFF" class="STYLE2" align="right" colspan="7">
 							<div align="right" class="STYLE2 STYLE1">
 								<ncs:page pageSize="${page.pageSize}"
 									currentPageNo="${page.currentPageNo }"
