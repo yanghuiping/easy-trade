@@ -24,16 +24,16 @@
 		DEL_FLAG,BUY_CONTACTS_NAME,SELL_COMPANY_NAME,CREATE_TIME,CONTRACT_NAME,
 		ID,BUY_COMPANY_NAME,CONTRACT_CODE,SELL_CONTACTS_NAME
     </sql>
-    <insert id="create" parameterType="PurchaseContract">
+    <insert id="create" useGeneratedKeys="true" keyProperty="id" parameterType="PurchaseContract">
         INSERT INTO PURCHASE_CONTRACT(
 			BUY_CONTACTS_TEL,EFFECTIVE_TIME,SELL_CONTACTS_TEL,UPDATE_TIME,REMARK,
 			DEL_FLAG,BUY_CONTACTS_NAME,SELL_COMPANY_NAME,CREATE_TIME,CONTRACT_NAME,
-			BUY_COMPANY_NAME,CONTRACT_CODE,SELL_CONTACTS_NAME
+			BUY_COMPANY_NAME,CONTRACT_CODE,SELL_CONTACTS_NAME,ID
         )
         VALUES(
             #{buyContactsTel},#{effectiveTime},#{sellContactsTel},#{updateTime},#{remark},
 			#{delFlag},#{buyContactsName},#{sellCompanyName},#{createTime},#{contractName},
-			#{buyCompanyName},#{contractCode},#{sellContactsName}
+			#{buyCompanyName},#{contractCode},#{sellContactsName},#{id}
 		)
     </insert>
 

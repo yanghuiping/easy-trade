@@ -13,3 +13,4 @@
 .settings/org.eclipse.wst.jsdt.ui.superType.name
 .settings/org.eclipse.core.runtime.prefs
 *.iml
+.src/main/resource/db_config.properties

@@ -24,7 +24,7 @@
 		DEL_FLAG,PRODUCT_NAME,TOTAL_AMOUNT,UNIT,CREATE_TIME,
 		PRICE,CONTRACT_ID,ID,PER_VALUE
     </sql>
-    <insert id="create" parameterType="PurchaseProduct">
+    <insert id="create" useGeneratedKeys="true" keyProperty="id" parameterType="PurchaseProduct">
         INSERT INTO PURCHASE_PRODUCT(
 			PRODUCT_MODEL,NUM,PRODUCT_SPECIFICATIONS,UPDATE_TIME,REMARK,
 			DEL_FLAG,PRODUCT_NAME,TOTAL_AMOUNT,UNIT,CREATE_TIME,
@@ -35,9 +35,6 @@
 			#{delFlag},#{productName},#{totalAmount},#{unit},#{createTime},
 			#{price},#{contractId},#{id},#{perValue}
 		)
-        <selectKey resultType="int" keyProperty="id" order="AFTER">
-			SELECT LAST_INSERT_ID() AS VALUE
-		</selectKey>
     </insert>
 
     <update id="update" parameterType="PurchaseProduct">
