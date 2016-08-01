@@ -1,55 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%@ taglib uri="/ncs" prefix="ncs"%>
+<%@ include file="/common/staticresource.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-<!--
-body {
-	margin-left: 0px;
-	margin-top: 0px;
-	margin-center: 0px;
-	margin-bottom: 0px;
-}
-.STYLE1 {font-size: 12px}
-.STYLE4 {
-	font-size: 12px;
-	color: #1F4A65;
-	font-weight: bold;
-}
-
-a:link {
-	font-size: 12px;
-	color: #06482a;
-	text-decoration: none;
-
-}
-a:visited {
-	font-size: 12px;
-	color: #06482a;
-	text-decoration: none;
-}
-a:hover {
-	font-size: 12px;
-	color: #FF0000;
-	text-decoration: underline;
-}
-a:active {
-	font-size: 12px;
-	color: #FF0000;
-	text-decoration: none;
-}
-.STYLE7 {font-size: 12}
-
--->
-</style>
-<script type="text/javascript" src="${ctx}/My97DatePicker/WdatePicker.js"></script>
 </head>
 <body>
 	<form name="managerForm" id="managerForm" action="demo.htm" method="post">

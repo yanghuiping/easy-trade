@@ -25,7 +25,7 @@ public class CommonInterceptor implements HandlerInterceptor {
 //			if(loginUser!=null){
 //				modelAndView.addObject("user", loginUser);
 //			}
-			modelAndView.addObject("ctx", "http://localhost:8080/easy-trade");
+//			modelAndView.addObject("ctx", "http://localhost:8080/easy-trade");
 //			modelAndView.addObject("merge_http", ConfigConstants.merge_http);
 //			modelAndView.addObject("cnzz_statistics", ConfigConstants.cnzz_statistics);
 //			modelAndView.addObject("clicki_statistics", ConfigConstants.clicki_statistics);
