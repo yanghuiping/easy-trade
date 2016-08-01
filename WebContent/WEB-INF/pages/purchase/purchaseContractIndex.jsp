@@ -108,7 +108,7 @@
 					<tr>
 						<td height="18" bgcolor="#FFFFFF" class="STYLE2" align="right" colspan="7">
 							<div align="right" class="STYLE2 STYLE1">
-								<ncs:page pageSize="${page.pageSize}"
+								<yc:page pageSize="${page.pageSize}"
 									currentPageNo="${page.currentPageNo }"
 									formId="managerhiddenForm" totalCount="${page.totalCount }"
 									totalPageCount="${page.totalPageCount }" />
