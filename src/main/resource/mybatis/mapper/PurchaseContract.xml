@@ -35,9 +35,6 @@
 			#{delFlag},#{buyContactsName},#{sellCompanyName},#{createTime},#{contractName},
 			#{buyCompanyName},#{contractCode},#{sellContactsName},#{id}
 		)
-		<selectKey resultType="Integer" keyProperty="ID" order="AFTER"> 
-             SELECT @@IDENTITY AS id
-        </selectKey>
     </insert>
 
     <update id="update" parameterType="PurchaseContract">

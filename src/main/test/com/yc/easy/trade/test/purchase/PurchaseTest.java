@@ -99,7 +99,7 @@ public class PurchaseTest extends BaseTest {
 			purchaseProduct.setCreateTime(new Date());
 			purchaseProduct.setProductName("产品_"+i);
 			int r = pourchaseProductService.addPurchaseProduct(purchaseProduct);
-			System.out.println(r);
+			System.out.println(r+"-"+purchaseProduct.getId());
 		}
 	}
 	
