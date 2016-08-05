@@ -42,8 +42,8 @@
   </servlet-mapping>
   <jsp-config>
     <taglib>
-      <taglib-uri>/ncs</taglib-uri>
-      <taglib-location>/WEB-INF/tlds/ncs.tld</taglib-location>
+      <taglib-uri>/yc</taglib-uri>
+      <taglib-location>/WEB-INF/tlds/yc.tld</taglib-location>
     </taglib>
   </jsp-config>
   <session-config>
