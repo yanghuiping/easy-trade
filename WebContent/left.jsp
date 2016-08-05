@@ -85,14 +85,14 @@ function MM_swapImage() { //v3.0
         <td height="80" style="background-image:url(images/web/main/main_23.gif); background-repeat:repeat-x;">
 	        <table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
 	          <tr>
-	            <td height="45"><div align="center"><a href="user/demo.htm" target="rightFrame"><img src="images/web/main/main_26.gif" name="Image1" height="40" border="0" id="Image1" onmouseover="MM_swapImage('Image1','','images/web/main/main_26_1.gif',1)" onmouseout="MM_swapImgRestore()" /></a></div></td>
-	            <td><div align="center"><a href="user/demo.htm" target="rightFrame"><img src="images/web/main/main_28.gif" name="Image2" height="40" border="0" id="Image2" onmouseover="MM_swapImage('Image2','','images/web/main/main_29_1.gif',1)" onmouseout="MM_swapImgRestore()" /></a></div></td>
-	            <td><div align="center"><a href="user/demo.htm" target="rightFrame"><img src="images/web/main/main_31.gif" name="Image3" height="40" border="0" id="Image3" onmouseover="MM_swapImage('Image3','','images/web/main/main_31_1.gif',1)" onmouseout="MM_swapImgRestore()" /></a></div></td>
+	            <td height="45"><div align="center"><a href="" target="rightFrame"><img src="images/web/main/main_26.gif" name="Image1" height="40" border="0" id="Image1" onmouseover="MM_swapImage('Image1','','images/web/main/main_26_1.gif',1)" onmouseout="MM_swapImgRestore()" /></a></div></td>
+	            <td><div align="center"><a href="" target="rightFrame"><img src="images/web/main/main_28.gif" name="Image2" height="40" border="0" id="Image2" onmouseover="MM_swapImage('Image2','','images/web/main/main_29_1.gif',1)" onmouseout="MM_swapImgRestore()" /></a></div></td>
+	            <td><div align="center"><a href="" target="rightFrame"><img src="images/web/main/main_31.gif" name="Image3" height="40" border="0" id="Image3" onmouseover="MM_swapImage('Image3','','images/web/main/main_31_1.gif',1)" onmouseout="MM_swapImgRestore()" /></a></div></td>
 	          </tr>
 	          <tr>
-	            <td height="25"><div align="center" class="STYLE2"><a href="user/demo.htm" target="rightFrame">配置管理</a></div></td>
-	            <td><div align="center" class="STYLE2"><a href="purchaseManage/purchaseCountractIndex.htm" target="rightFrame">日志管理</a></div></td>
-	            <td><div align="center" class="STYLE2"><a href="user/demo.htm" target="rightFrame">数据分析</a></div></td>
+	            <td height="25"><div align="center" class="STYLE2"><a href="" target="rightFrame">配置管理</a></div></td>
+	            <td><div align="center" class="STYLE2"><a href="" target="rightFrame">日志管理</a></div></td>
+	            <td><div align="center" class="STYLE2"><a href="" target="rightFrame">数据分析</a></div></td>
 	          </tr>
 	        </table>
         </td>
@@ -106,11 +106,13 @@ function MM_swapImage() { //v3.0
         	<!-- <div style="margin-left: 10px;margin-top: 10px;visibility:hidden"> -->
         	<div style="margin-left: 10px;margin-top: 10px;">
 	        	<script type="text/javascript">
-					var tree = new WebFXTree('xxx管理系统');
+					var tree = new WebFXTree('贸易管理系统');
 					tree.setBehavior('classic');
-					var demo = new WebFXTreeItem('demo','','rightFrame',tree);
+					/* var demo = new WebFXTreeItem('demo','','rightFrame',tree);
 					var demo1 = new WebFXTreeItem('demo1','','rightFrame',demo);
-					new WebFXTreeItem("分页查询",'user/demo.htm','rightFrame',tree);
+					new WebFXTreeItem("分页查询",'user/demo.htm','rightFrame',tree); */
+					var purchase = new WebFXTreeItem('合同管理','','rightFrame',tree);
+					new WebFXTreeItem('购销合同管理','purchaseManage/purchaseCountractIndex.htm','rightFrame',purchase);
 					document.write(tree);
 				</script>
 			</div>
