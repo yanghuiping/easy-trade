@@ -8,21 +8,21 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form name="managerForm" id="managerForm" action="demo.htm" method="post">
+	<form name="managerForm" id="managerForm" action="purchaseCountractIndex.htm" method="post">
 	<table border="0" cellpadding="0" cellspacing="0" background="../images/web/tab/images/tab_05.gif">
 		<tr>
 			<td width="15" height="30"><img src="../images/web/tab/images/tab_03.gif" width="15" height="30" /></td>
-			<td align="left" class="STYLE1">用户名称：</td>
+			<td align="left" class="STYLE1">合同编号：</td>
 			<td align="left" class="STYLE1">
-				<input name="userName" id="userName" type="text" value="${user.userName}" style="width: 150px" />
+				<input name="contractCode" id="contractCode" type="text" value="${purchaseContract.contractCode}" style="width: 150px" />
 			</td>
-			<td align="left" class="STYLE1">开始时间：</td>
+			<td align="left" class="STYLE1">合同名称：</td>
 			<td align="left" class="STYLE1">
-				<input type="text" name="startTime" id="startTime" class="Wdate" value="<fmt:formatDate pattern="yyyy-MM-dd" value="${user.startTime}" />" onClick="WdatePicker()" style="cursor: pointer" readonly/>
+				<input type="text" name="contractName" id="contractName" value="${purchaseContract.contractName}"/>
 			</td>
 			<td align="left" class="STYLE1">结束时间：</td>
 			<td align="left" class="STYLE1">
-				<input type="text" name="endTime" id="endTime" class="Wdate" value="<fmt:formatDate pattern="yyyy-MM-dd" value="${user.endTime}" />" onClick="WdatePicker()" style="cursor: pointer" readonly/>
+				<input type="text" name="createTime" id="createTime" class="Wdate" value="<fmt:formatDate pattern="yyyy-MM-dd" value="${purchaseContract.createTime}" />" onClick="WdatePicker()" style="cursor: pointer" readonly/>
 			</td>
 			<td align="left" class="STYLE1">
 				<input name="cx" type="submit" value="查询" style="cursor: pointer" />
@@ -33,7 +33,7 @@
 		</tr>
 	</table>
 </form>
-	<form name="managerhiddenForm" id="managerhiddenForm" action="demo.htm"
+	<form name="managerhiddenForm" id="managerhiddenForm" action="${ctx}/purchaseManage/purchaseCountractIndex.htm"
 		method="post">
 		<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
 		  <tr>
@@ -55,7 +55,9 @@
 		                  <tr>
 		                    <td class="STYLE1"><div align="center"><img src="../images/web/tab/images/001.gif" width="14" height="14" /></div></td>
 		                    <td class="STYLE1">
-		                    	<div align="center">新增</div>
+		                    	<div align="center">
+		                    		<a href="${ctx}/purchaseManage/addPurchaseContract.htm">新增</a>
+		                    	</div>
 		                    </td>
 		                  </tr>
 		              </table></td>
@@ -97,7 +99,9 @@
 							<td height="18" bgcolor="#FFFFFF" class="STYLE2"><div align="center" class="STYLE2 STYLE1">${purchaseContract.contractCode}</div></td>
 							<td height="18" bgcolor="#FFFFFF" class="STYLE2"><div align="center" class="STYLE2 STYLE1">${purchaseContract.contractName}</div></td>
 							<td height="18" bgcolor="#FFFFFF" class="STYLE2"><div align="center" class="STYLE2 STYLE1">${purchaseContract.effectiveTime}</div></td>
-							<td height="18" bgcolor="#FFFFFF" class="STYLE2"><div align="center" class="STYLE2 STYLE1">${purchaseContract.createTime}</div></td>
+							<td height="18" bgcolor="#FFFFFF" class="STYLE2"><div align="center" class="STYLE2 STYLE1">
+								<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${purchaseContract.createTime}"/>
+							</div></td>
 							<td height="18" bgcolor="#FFFFFF" class="STYLE2"><div align="center" class="STYLE2 STYLE1">${purchaseContract.sellCompanyName}</div></td>
 							<td height="18" bgcolor="#FFFFFF" class="STYLE2"><div align="center" class="STYLE2 STYLE1">${purchaseContract.sellContactsName}</div></td>
 						</tr>

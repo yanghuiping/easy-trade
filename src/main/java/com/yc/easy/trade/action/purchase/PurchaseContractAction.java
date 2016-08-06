@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -69,8 +70,18 @@ public class PurchaseContractAction extends BaseAction {
 	 */
 	@RequestMapping(value="/addPurchaseContract.htm")
 	public ModelAndView addPurchaseContract(){
-		ModelAndView modelAndView = new ModelAndView();
+		ModelAndView modelAndView = new ModelAndView("purchase/addPurchaseContract");
 		
 		return modelAndView;
+	}
+	
+	/**
+	 * 保存
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value="/savePurchaseContract.htm")
+	public String savePurchaseContract(ModelMap modelMap){
+		return "";
 	}
 }

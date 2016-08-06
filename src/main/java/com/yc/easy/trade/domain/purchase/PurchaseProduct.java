@@ -13,7 +13,9 @@ import java.math.BigDecimal;
 
 public class PurchaseProduct  implements java.io.Serializable {
 
-    private String productModel; //型号
+	private static final long serialVersionUID = -7927001143928158162L;
+	
+	private String productModel; //型号
     private BigDecimal num; //数量
     private String productSpecifications; //规格
     private java.util.Date updateTime; //更新时间
