@@ -14,6 +14,7 @@ import com.yc.easy.trade.common.base.BaseAction;
 import com.yc.easy.trade.common.web.support.Page;
 import com.yc.easy.trade.domain.purchase.PurchaseContract;
 import com.yc.easy.trade.service.purchase.PurchaseContractService;
+import com.yc.easy.trade.vo.PurchaseVO;
 @Controller
 @RequestMapping("/purchaseManage")
 public class PurchaseContractAction extends BaseAction {
@@ -81,7 +82,8 @@ public class PurchaseContractAction extends BaseAction {
 	 * @return
 	 */
 	@RequestMapping(value="/savePurchaseContract.htm")
-	public String savePurchaseContract(ModelMap modelMap){
-		return "";
+	public String savePurchaseContract(ModelMap modelMap,PurchaseVO purchase){
+		System.out.println(purchase.getContractCode());
+		return "redirect:/purchaseManage/purchaseCountractIndex.htm";
 	}
 }

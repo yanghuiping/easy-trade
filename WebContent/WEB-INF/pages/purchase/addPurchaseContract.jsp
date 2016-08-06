@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form name="managerForm" id="managerForm" action="purchaseCountractIndex.htm" method="post">
+<form name="managerForm" id="managerForm" action="${ctx}/purchaseManage/savePurchaseContract.htm" method="post">
 	<table border="0" cellpadding="0" cellspacing="0" background="../images/web/tab/images/tab_05.gif">
 		<tr>
 			<td width="15" height="30"><img src="../images/web/tab/images/tab_03.gif" width="15" height="30" /></td>
@@ -22,16 +22,16 @@
 			</td>
 			<td align="left" class="STYLE1">结束时间：</td>
 			<td align="left" class="STYLE1">
-				<input type="text" name="createTime" id="createTime"class="Wdate" value="<fmt:formatDate pattern="yyyy-MM-dd" value="${purchaseContract.createTime}" />" onClick="WdatePicker()" style="cursor: pointer" readonly/>
+				<%-- <input type="text" name="createTime" id="createTime"class="Wdate" value="<fmt:formatDate pattern="yyyy-MM-dd" value="${purchaseContract.createTime}" />" onClick="WdatePicker()" style="cursor: pointer" readonly/> --%>
 			</td>
 			<td align="left" class="STYLE1">结束时间：</td>
 			<td align="left" class="STYLE1">
-				<input type="text" name="createTime" id="createTime" class="Wdate" value="<fmt:formatDate pattern="yyyy-MM-dd" value="${purchaseContract.createTime}" />" onClick="WdatePicker()" style="cursor: pointer" readonly/>
+				<%-- <input type="text" name="createTime" id="createTime" class="Wdate" value="<fmt:formatDate pattern="yyyy-MM-dd" value="${purchaseContract.createTime}" />" onClick="WdatePicker()" style="cursor: pointer" readonly/> --%>
 			</td>
 		</tr>
 		<tr>
 			<td align="right" class="STYLE1" colspan="">
-				<input name="cx" type="submit" value="查询" style="cursor: pointer" />
+				<input name="cx" type="submit" value="保存" style="cursor: pointer" />
 			</td>
 			<td align="left" class="STYLE1" colspan="8">
 				<input name="cz" type="reset" id="resetBtn" value="重置" style="cursor: pointer" />
