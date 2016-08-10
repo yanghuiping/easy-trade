@@ -38,6 +38,62 @@
 			</td>
 		</tr>
 	</table>
+	<table>
+		<tr>
+			<td>合同编号</td>
+			<td>
+				<input type="text" name="contractCode" id="contractCode" value="${purchaseContract.contractCode}"/>
+			</td>
+			<td>合同名称</td>
+			<td>
+				<input type="text" name="contractName" id="contractName" value="${purchaseContract.contractName}"/>
+			</td>
+			<td>供方公司名称</td>
+			<td>
+				<input type="text" name="sellCompanyName" id="sellCompanyName" value="${purchaseContract.sellCompanyName}"/>
+			</td>
+			<td>供方联系人姓名</td>
+			<td>
+				<input type="text" name="sellContactsName" id="sellContactsName" value="${purchaseContract.sellContactsName}"/>
+			</td>
+		</tr>
+		<tr>
+			<td>供方联系人电话</td>
+			<td>
+				<input type="text" name="sellContactsTel" id="sellContactsTel" value="${purchaseContract.sellContactsTel}"/>
+			</td>
+			<td>需方公司名称</td>
+			<td>
+				<input type="text" name="buyCompanyName" id="buyCompanyName" value="${purchaseContract.buyCompanyName}"/>
+			</td>
+			<td>需方联系人姓名</td>
+			<td>
+				<input type="text" name="buyContactsName" id="buyContactsName" value="${purchaseContract.buyContactsName}"/>
+			</td>
+			<td>需方联系人电话</td>
+			<td>
+				<input type="text" name="buyContactsTel" id="buyContactsTel" value="${purchaseContract.buyContactsTel}"/>
+			</td>
+		</tr>
+		<tr>
+			<td>合同签订时间</td>
+			<td>
+				<input type="text" name="effectiveTime" id="effectiveTime" value="${purchaseContract.effectiveTime}"/>
+			</td>
+			<td>备注</td>
+			<td>
+				<input type="text" name="remark" id="remark" value="${purchaseContract.remark}"/>
+			</td>
+			<td></td>
+			<td>
+				
+			</td>
+			<td></td>
+			<td>
+				
+			</td>
+		</tr>
+	</table>
 </form>
 </body>
 </html>

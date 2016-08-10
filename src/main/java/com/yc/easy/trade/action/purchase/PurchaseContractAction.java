@@ -1,6 +1,9 @@
 package com.yc.easy.trade.action.purchase;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
@@ -11,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.yc.easy.trade.common.base.BaseAction;
+import com.yc.easy.trade.common.base.Constants;
 import com.yc.easy.trade.common.web.support.Page;
 import com.yc.easy.trade.domain.purchase.PurchaseContract;
+import com.yc.easy.trade.domain.purchase.PurchaseProduct;
 import com.yc.easy.trade.service.purchase.PurchaseContractService;
 import com.yc.easy.trade.vo.PurchaseVO;
 @Controller
@@ -83,7 +88,29 @@ public class PurchaseContractAction extends BaseAction {
 	 */
 	@RequestMapping(value="/savePurchaseContract.htm")
 	public String savePurchaseContract(ModelMap modelMap,PurchaseVO purchase){
-		System.out.println(purchase.getContractCode());
+		Map<String,Object> purchaseMap = new HashMap<String,Object>();
+		
+		PurchaseContract purchaseContract = new PurchaseContract();
+		purchaseContract.setBuyCompanyName(purchase.getBuyCompanyName());
+		purchaseContract.setBuyContactsName(purchase.getBuyContactsName());
+		purchaseContract.setBuyContactsTel(purchase.getBuyContactsTel());
+		purchaseContract.setContractCode(purchase.getContractCode());
+		purchaseContract.setContractName(purchase.getContractName());
+		purchaseContract.setCreateTime(new Date());
+		purchaseContract.setDelFlag(Constants.DEL_FLAG_NO);
+		purchaseContract.setEffectiveTime(purchase.getEffectiveTime());
+		purchaseContract.setRemark(purchase.getRemark());
+		purchaseContract.setSellCompanyName(purchase.getSellCompanyName());
+		purchaseContract.setSellContactsName(purchase.getSellContactsName());
+		purchaseContract.setSellContactsTel(purchase.getSellContactsTel());
+		purchaseContract.setUpdateTime(new Date());
+		purchaseMap.put("purchaseContract", purchaseContract);
+		List<PurchaseProduct> purchaseProductList = new ArrayList<PurchaseProduct>();
+		List<String> productNames = purchase.getProductName();
+		
+		purchaseMap.put("purchaseProductList", purchaseProductList);
+		
+		purchaseContractService.addPurchaseRdTx(purchaseMap);
 		return "redirect:/purchaseManage/purchaseCountractIndex.htm";
 	}
 }

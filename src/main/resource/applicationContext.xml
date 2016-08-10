@@ -75,6 +75,10 @@
 			<tx:method name="del*" propagation="REQUIRED"/>
 			<tx:method name="cut*" propagation="REQUIRED" />
 			<tx:method name="find*" read-only="true"/>
+			<tx:method name="*RdTx" propagation="REQUIRED" />
+			<tx:method name="*SpTx" propagation="SUPPORTS" />
+			<tx:method name="*NsTx" propagation="NOT_SUPPORTED" />
+			<tx:method name="*RnTx" propagation="REQUIRES_NEW" />
 		</tx:attributes>
 	</tx:advice> 
 </beans>

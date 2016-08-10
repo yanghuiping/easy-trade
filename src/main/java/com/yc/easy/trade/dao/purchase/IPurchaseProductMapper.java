@@ -21,6 +21,18 @@ public interface IPurchaseProductMapper extends IBasePageMapper{
 	public Integer create(PurchaseProduct purchaseProduct);
 	
 	/**
+	 * 
+	  * @Title batchCreate
+	  * @Description 批量创建
+	  * @author yanghuiping
+	  * @param @param purchaseProductList    设定文件
+	  * @return void    返回类型
+	  * @throws
+	  * @date 2016年8月10日 下午4:27:18
+	 */
+	public void batchCreate(List<PurchaseProduct> purchaseProductList);
+	
+	/**
 	 * 修改
 	 * @param PurchaseProduct
 	 * @return

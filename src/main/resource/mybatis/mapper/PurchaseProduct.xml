@@ -37,6 +37,22 @@
 		)
     </insert>
 
+	<insert id="batchCreate" parameterType="java.util.List">
+		INSERT INTO PURCHASE_PRODUCT(
+			PRODUCT_MODEL,NUM,PRODUCT_SPECIFICATIONS,UPDATE_TIME,REMARK,
+			DEL_FLAG,PRODUCT_NAME,TOTAL_AMOUNT,UNIT,CREATE_TIME,
+			PRICE,CONTRACT_ID,PER_VALUE
+        )
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+        (
+            #{item.productModel},#{item.num},#{item.productSpecifications},#{item.updateTime},#{item.remark},
+			#{item.delFlag},#{item.productName},#{item.totalAmount},#{item.unit},#{item.createTime},
+			#{item.price},#{item.contractId},#{item.perValue}
+		)
+		</foreach>
+	</insert>
+
     <update id="update" parameterType="PurchaseProduct">
         UPDATE PURCHASE_PRODUCT SET
         <if test="id != null">

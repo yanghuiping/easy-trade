@@ -1,5 +1,6 @@
 package com.yc.easy.trade.test.purchase;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -101,6 +102,21 @@ public class PurchaseTest extends BaseTest {
 			int r = pourchaseProductService.addPurchaseProduct(purchaseProduct);
 			System.out.println(r+"-"+purchaseProduct.getId());
 		}
+	}
+	
+	@Test
+	public void createBatchPurchaseProduct(){
+		List<PurchaseProduct> list = new ArrayList<PurchaseProduct>();
+		for(int i=0;i<5;i++){
+			PurchaseProduct purchaseProduct = new PurchaseProduct();
+			purchaseProduct.setContractId(1);
+			purchaseProduct.setDelFlag(Constants.DEL_FLAG_NO);
+			purchaseProduct.setUpdateTime(new Date());
+			purchaseProduct.setCreateTime(new Date());
+			purchaseProduct.setProductName("产品_"+i);
+			list.add(purchaseProduct);
+		}
+		pourchaseProductService.addPurchaseProductBatch(list);
 	}
 	
 	@Test

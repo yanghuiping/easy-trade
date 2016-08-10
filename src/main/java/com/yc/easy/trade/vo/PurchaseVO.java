@@ -1,122 +1,149 @@
 package com.yc.easy.trade.vo;
 
-import com.yc.easy.trade.domain.purchase.PurchaseProduct;
+import java.util.List;
+
+import com.yc.easy.trade.domain.purchase.PurchaseContract;
 /**
  * @author yanghuiping
  */
-public class PurchaseVO extends PurchaseProduct {
+public class PurchaseVO extends PurchaseContract {
+	
 	private static final long serialVersionUID = 4432915733212790648L;
-	private String buyContactsTel; //需方联系人电话
-    private java.util.Date effectiveTime; //合同签订时间
-    private String sellContactsTel; //供方联系人电话
-    private java.util.Date updateTime; //更新时间
-    private String remark; //备注
-    private Integer delFlag; //删除标识。0：非删除；1：删除
-    private String buyContactsName; //需方联系人姓名
-    private String sellCompanyName; //供方公司名称
-    private java.util.Date createTime; //添加时间
-    private String contractName; //合同名称
-    private Integer id; //主键ID，自动生成
-    private String buyCompanyName; //需方公司名称
-    private String contractCode; //合同编号
-    private String sellContactsName; //供方联系人姓名
-
-    public String getBuyContactsTel (){
-        return buyContactsTel;
-    }
+	
+	private List<String> productModel; //型号
+    private List<String> num; //数量
+    private List<String> productSpecifications; //规格
+    private List<String> remarks; //备注
+    private List<String> productName; //商品名称
+    private List<String> totalAmount; //总金额
+    private List<String> unit; //单位
+    private List<String> price; //单价
+    private List<String> perValue; //1单位数量
+	/**
+	 * getter method
+	 * @return the productModel
+	 */
+	public List<String> getProductModel() {
+		return productModel;
+	}
+	/**
+	 * setter method
+	 * @param productModel the productModel to set
+	 */
+	public void setProductModel(List<String> productModel) {
+		this.productModel = productModel;
+	}
+	/**
+	 * getter method
+	 * @return the num
+	 */
+	public List<String> getNum() {
+		return num;
+	}
+	/**
+	 * setter method
+	 * @param num the num to set
+	 */
+	public void setNum(List<String> num) {
+		this.num = num;
+	}
+	/**
+	 * getter method
+	 * @return the productSpecifications
+	 */
+	public List<String> getProductSpecifications() {
+		return productSpecifications;
+	}
+	/**
+	 * setter method
+	 * @param productSpecifications the productSpecifications to set
+	 */
+	public void setProductSpecifications(List<String> productSpecifications) {
+		this.productSpecifications = productSpecifications;
+	}
+	/**
+	 * getter method
+	 * @return the remarks
+	 */
+	public List<String> getRemarks() {
+		return remarks;
+	}
+	/**
+	 * setter method
+	 * @param remarks the remarks to set
+	 */
+	public void setRemarks(List<String> remarks) {
+		this.remarks = remarks;
+	}
+	/**
+	 * getter method
+	 * @return the productName
+	 */
+	public List<String> getProductName() {
+		return productName;
+	}
+	/**
+	 * setter method
+	 * @param productName the productName to set
+	 */
+	public void setProductName(List<String> productName) {
+		this.productName = productName;
+	}
+	/**
+	 * getter method
+	 * @return the totalAmount
+	 */
+	public List<String> getTotalAmount() {
+		return totalAmount;
+	}
+	/**
+	 * setter method
+	 * @param totalAmount the totalAmount to set
+	 */
+	public void setTotalAmount(List<String> totalAmount) {
+		this.totalAmount = totalAmount;
+	}
+	/**
+	 * getter method
+	 * @return the unit
+	 */
+	public List<String> getUnit() {
+		return unit;
+	}
+	/**
+	 * setter method
+	 * @param unit the unit to set
+	 */
+	public void setUnit(List<String> unit) {
+		this.unit = unit;
+	}
+	/**
+	 * getter method
+	 * @return the price
+	 */
+	public List<String> getPrice() {
+		return price;
+	}
+	/**
+	 * setter method
+	 * @param price the price to set
+	 */
+	public void setPrice(List<String> price) {
+		this.price = price;
+	}
+	/**
+	 * getter method
+	 * @return the perValue
+	 */
+	public List<String> getPerValue() {
+		return perValue;
+	}
+	/**
+	 * setter method
+	 * @param perValue the perValue to set
+	 */
+	public void setPerValue(List<String> perValue) {
+		this.perValue = perValue;
+	}
     
-    public void setBuyContactsTel (String buyContactsTel){
-        this.buyContactsTel = buyContactsTel;
-    }
-    public java.util.Date getEffectiveTime (){
-        return effectiveTime;
-    }
-    
-    public void setEffectiveTime (java.util.Date effectiveTime){
-        this.effectiveTime = effectiveTime;
-    }
-    public String getSellContactsTel (){
-        return sellContactsTel;
-    }
-    
-    public void setSellContactsTel (String sellContactsTel){
-        this.sellContactsTel = sellContactsTel;
-    }
-    public java.util.Date getUpdateTime (){
-        return updateTime;
-    }
-    
-    public void setUpdateTime (java.util.Date updateTime){
-        this.updateTime = updateTime;
-    }
-    public String getRemark (){
-        return remark;
-    }
-    
-    public void setRemark (String remark){
-        this.remark = remark;
-    }
-    public Integer getDelFlag (){
-        return delFlag;
-    }
-    
-    public void setDelFlag (Integer delFlag){
-        this.delFlag = delFlag;
-    }
-    public String getBuyContactsName (){
-        return buyContactsName;
-    }
-    
-    public void setBuyContactsName (String buyContactsName){
-        this.buyContactsName = buyContactsName;
-    }
-    public String getSellCompanyName (){
-        return sellCompanyName;
-    }
-    
-    public void setSellCompanyName (String sellCompanyName){
-        this.sellCompanyName = sellCompanyName;
-    }
-    public java.util.Date getCreateTime (){
-        return createTime;
-    }
-    
-    public void setCreateTime (java.util.Date createTime){
-        this.createTime = createTime;
-    }
-    public String getContractName (){
-        return contractName;
-    }
-    
-    public void setContractName (String contractName){
-        this.contractName = contractName;
-    }
-    public Integer getId (){
-        return id;
-    }
-    
-    public void setId (Integer id){
-        this.id = id;
-    }
-    public String getBuyCompanyName (){
-        return buyCompanyName;
-    }
-    
-    public void setBuyCompanyName (String buyCompanyName){
-        this.buyCompanyName = buyCompanyName;
-    }
-    public String getContractCode (){
-        return contractCode;
-    }
-    
-    public void setContractCode (String contractCode){
-        this.contractCode = contractCode;
-    }
-    public String getSellContactsName (){
-        return sellContactsName;
-    }
-    
-    public void setSellContactsName (String sellContactsName){
-        this.sellContactsName = sellContactsName;
-    }
 }
