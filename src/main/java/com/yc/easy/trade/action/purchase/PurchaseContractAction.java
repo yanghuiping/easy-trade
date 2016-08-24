@@ -1,5 +1,6 @@
 package com.yc.easy.trade.action.purchase;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -105,11 +106,36 @@ public class PurchaseContractAction extends BaseAction {
 		purchaseContract.setSellContactsTel(purchase.getSellContactsTel());
 		purchaseContract.setUpdateTime(new Date());
 		purchaseMap.put("purchaseContract", purchaseContract);
+		
 		List<PurchaseProduct> purchaseProductList = new ArrayList<PurchaseProduct>();
-		List<String> productNames = purchase.getProductName();
-		
+		List<String> productNames = purchase.getProductName();//商品名称
+		List<String> productModels = purchase.getProductModel();; //型号
+	    List<String> nums = purchase.getNum();; //数量
+	    List<String> productSpecifications = purchase.getProductSpecifications(); //规格
+	    List<String> remarks = purchase.getRemarks();; //备注
+	    List<String> totalAmounts = purchase.getTotalAmount(); //总金额
+	    List<String> units = purchase.getUnit(); //单位
+	    List<String> prices = purchase.getPrice();; //单价
+	    List<String> perValues = purchase.getPerValue();; //1单位数量
+		if(productNames != null && productNames.size() > 0){
+			for(int i=0;i<productNames.size();i++){
+				PurchaseProduct purchaseProduct = new PurchaseProduct();
+				purchaseProduct.setCreateTime(new Date());
+				purchaseProduct.setDelFlag(Constants.DEL_FLAG_NO);
+				purchaseProduct.setNum(nums.get(i) != null && !"".equals(nums.get(i).trim()) ? new BigDecimal(nums.get(i)): new BigDecimal("0"));
+				purchaseProduct.setPerValue(perValues.get(i));
+				purchaseProduct.setPrice(prices.get(i) != null && !"".equals(prices.get(i)) ? new BigDecimal(prices.get(i)) : new BigDecimal("0"));
+				purchaseProduct.setProductModel(productModels.get(i));
+				purchaseProduct.setProductName(productNames.get(i));
+				purchaseProduct.setProductSpecifications(productSpecifications.get(i));
+				purchaseProduct.setRemark(remarks.get(i));
+				purchaseProduct.setTotalAmount(totalAmounts.get(i) != null && !"".equals(new BigDecimal(totalAmounts.get(i))) ? new BigDecimal(totalAmounts.get(i)) : new BigDecimal("0"));
+				purchaseProduct.setUnit(units.get(i));
+				purchaseProduct.setUpdateTime(new Date());
+				purchaseProductList.add(purchaseProduct);
+			}
+		}
 		purchaseMap.put("purchaseProductList", purchaseProductList);
-		
 		purchaseContractService.addPurchaseRdTx(purchaseMap);
 		return "redirect:/purchaseManage/purchaseCountractIndex.htm";
 	}
