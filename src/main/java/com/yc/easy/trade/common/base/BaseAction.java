@@ -10,7 +10,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 public abstract class BaseAction
 {
-	protected Logger log = Logger.getLogger(this.getClass());
+	protected Logger logger = Logger.getLogger(this.getClass());
 
 	protected HttpServletRequest request;
 	protected HttpServletResponse response;

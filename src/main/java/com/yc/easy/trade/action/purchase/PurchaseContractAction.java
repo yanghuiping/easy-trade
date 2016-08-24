@@ -4,14 +4,19 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.yc.easy.trade.common.base.BaseAction;
@@ -138,5 +143,47 @@ public class PurchaseContractAction extends BaseAction {
 		purchaseMap.put("purchaseProductList", purchaseProductList);
 		purchaseContractService.addPurchaseRdTx(purchaseMap);
 		return "redirect:/purchaseManage/purchaseCountractIndex.htm";
+	}
+	
+	/**
+	 * 
+	  * @Title exportBidRecordExcel
+	  * @Description 导出excel测试
+	  * @author yanghuiping
+	  * @param @param request
+	  * @param @param response
+	  * @param @return    设定文件
+	  * @return String    返回类型
+	  * @throws
+	  * @date 2016年8月24日 下午5:26:33
+	 */
+	@RequestMapping(value="/exportExcel.htm",produces={"text/plain;charset=UTF-8"})
+	@ResponseBody
+	public String exportBidRecordExcel(HttpServletRequest request,HttpServletResponse response){
+		//开始导出
+		Map<String,Object> headerMap = new LinkedHashMap<String,Object>();
+		headerMap.put("NO", "编号");
+		headerMap.put("NAME", "名称");
+		headerMap.put("SEX", "性别");
+		headerMap.put("TEL", "电话");
+		headerMap.put("EMAIL", "邮箱");
+		try{
+			String fileName = "测试.xls";
+			List<HashMap<String, Object>> objectList = new ArrayList<HashMap<String,Object>>();
+			for(int i=0;i<10;i++){
+				HashMap<String,Object> hashMap = new HashMap<String,Object>();
+				hashMap.put("NO", "编号_"+i);
+				hashMap.put("NAME", "名称_"+i);
+				hashMap.put("SEX", "性别_"+i);
+				hashMap.put("TEL", "电话_"+i);
+				hashMap.put("EMAIL", "邮箱_"+i);
+				objectList.add(hashMap);
+			}
+			return purchaseContractService.exportExcel(request,response, fileName, headerMap, objectList);
+		}catch(Exception e){
+			logger.error("导出excel异常！");
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

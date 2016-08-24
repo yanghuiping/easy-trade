@@ -35,6 +35,8 @@
 			</td>
 			<td align="left" class="STYLE1" colspan="8">
 				<input name="cz" type="reset" id="resetBtn" value="重置" style="cursor: pointer" />
+				
+				<a href="${ctx}/purchaseManage/exportExcel.htm">导出excel测试</a>
 			</td>
 		</tr>
 	</table>

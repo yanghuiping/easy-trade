@@ -1,10 +1,13 @@
 package com.yc.easy.trade.service.purchase;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Service;
 
@@ -12,6 +15,7 @@ import com.yc.easy.trade.common.web.support.Page;
 import com.yc.easy.trade.dao.purchase.IPurchaseContractMapper;
 import com.yc.easy.trade.domain.purchase.PurchaseContract;
 import com.yc.easy.trade.domain.purchase.PurchaseProduct;
+import com.yc.easy.trade.service.base.CommonService;
 
 @Service("purchaseContractService")
 public class PurchaseContractService {
@@ -20,6 +24,9 @@ public class PurchaseContractService {
 	private IPurchaseContractMapper purchaseContractMapper;
 	@Resource
 	private PurchaseProductService purchaseProductService;
+	@Resource
+	private CommonService commonService;
+	
 	
 	public List<PurchaseContract> queryPurchaseContractList(PurchaseContract purchaseContract){
 		return purchaseContractMapper.findBySelective(purchaseContract);
@@ -60,5 +67,9 @@ public class PurchaseContractService {
 		}
 		purchaseProductService.addPurchaseProductBatch(productList);
 		return 1;
+	}
+	
+	public String exportExcel(HttpServletRequest request,HttpServletResponse response, String fileName, Map<String,Object> map, List<HashMap<String,Object>> objectList){
+		return commonService.exportExcel(request, response, fileName, map, objectList);
 	}
 }
